@@ -1,0 +1,26 @@
+# Carpeta para assets reales
+
+Estructura esperada:
+
+```
+public/assets/
+├── avatar-axel.png         <- imagen del flyer oficial (sección Sobre mí)
+├── seminarios/             <- fotos de seminarios presenciales
+│   ├── seminario-1.jpg
+│   ├── seminario-2.jpg
+│   └── seminario-3.jpg
+├── apps/                   <- screenshots de las apps del portfolio
+│   ├── clickangles.png
+│   ├── luna.png
+│   ├── aula-fiel.png
+│   ├── certificados-fiel.png
+│   ├── fiscalia.png
+│   ├── super-profesor.png
+│   └── repuestos-pro.png
+└── misc/                   <- imágenes sueltas para usar en cualquier parte
+    └── (lo que quieras)
+```
+
+Una vez subidas las imágenes reales, reemplazar los `<div class="thumb-placeholder">`
+y `<div class="avatar-placeholder">` en `index.html` por `<img src="...">` apuntando
+a la ruta correspondiente.

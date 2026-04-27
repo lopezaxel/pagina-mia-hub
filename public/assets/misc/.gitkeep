@@ -1,0 +1,12 @@
+# Carpeta libre · imágenes sueltas
+
+Acá podés tirar cualquier imagen que quieras usar en cualquier parte de la web
+(decoraciones, fondos, fotos extras, banners, logos de clientes, etc.).
+
+Cuando quieras usar alguna, decime el nombre del archivo y dónde la querés
+colocar, y yo la inserto en el HTML por vos.
+
+Ejemplo de uso:
+  public/assets/misc/foto-conferencia.jpg
+  public/assets/misc/logo-fiel.png
+  public/assets/misc/fondo-rojo.jpg

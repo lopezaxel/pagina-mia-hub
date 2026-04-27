@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Axel Lopez — Consultor de IA y Desarrollador Agéntico. Apps con inteligencia artificial, automatización de procesos y seminarios de IA en Salta, Argentina." />
+  <meta name="keywords" content="IA, Inteligencia Artificial, Desarrollo de apps, Consultor IA, Salta, Argentina, Seminarios, Claude, Gemini" />
+  <meta name="author" content="Axel Lopez" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Axel Lopez — Consultor de IA & Desarrollador Agéntico" />
+  <meta property="og:description" content="Construyo apps con IA, automatizo procesos y enseño Inteligencia Artificial en seminarios presenciales." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sistemaniki.com" />
+
+  <title>Axel Lopez | Sistema Niki — Consultor de IA & Desarrollador Agéntico</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23080000'/%3E%3Ctext x='50' y='68' font-family='Orbitron,sans-serif' font-size='60' font-weight='900' text-anchor='middle' fill='%23ff2200'%3EA%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+  <!-- ==================== ANIMATED BACKGROUND ==================== -->
+  <div class="bg-grid"></div>
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+  <svg class="bg-waves" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 1440 800">
+    <path class="wave wave-1" d="M0,400 Q360,300 720,400 T1440,400" />
+    <path class="wave wave-2" d="M0,420 Q360,520 720,420 T1440,420" />
+    <path class="wave wave-3" d="M0,440 Q360,340 720,440 T1440,440" />
+  </svg>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-mark">A</span>
+        <span class="logo-text">SISTEMA<strong>NIKI</strong></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#seminarios">Seminarios</a>
+        <a href="#contacto" class="nav-cta">Contactar</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== HERO ==================== -->
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <h1 class="hero-banner">
+        <img
+          src="public/assets/misc/Axel%20lopez%20desarrollador%20agentico.png"
+          alt="Axel Lopez · Consultor de IA · Desarrollador Agéntico"
+          class="hero-banner-img" />
+      </h1>
+      <p class="hero-tagline">
+        Construyo <strong>apps con inteligencia artificial</strong>, automatizo procesos
+        que antes se hacían a mano y enseño IA en seminarios presenciales en Salta, Argentina.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#portfolio" class="btn btn-primary">Ver Portfolio</a>
+        <a href="#contacto" class="btn btn-ghost">Contactar →</a>
+      </div>
+
+      <div class="hero-meta">
+        <div class="meta-item"><span class="meta-num">7+</span><span class="meta-label">Apps con IA</span></div>
+        <div class="meta-divider"></div>
+        <div class="meta-item"><span class="meta-num">∞</span><span class="meta-label">Seminarios IA</span></div>
+        <div class="meta-divider"></div>
+        <div class="meta-item"><span class="meta-num">26</span><span class="meta-label">Salta · ARG</span></div>
+      </div>
+    </div>
+
+    <a href="#sobre-mi" class="hero-scroll" aria-label="Scroll">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ==================== SOBRE MÍ ==================== -->
+  <section id="sobre-mi" class="section">
+    <div class="container two-col">
+      <div class="col-img">
+        <div class="avatar-frame glass-card">
+          <!-- PLACEHOLDER: reemplazar /public/assets/avatar-axel.png con la imagen real del flyer oficial -->
+          <div class="avatar-placeholder">
+            <span class="ph-icon">⬢</span>
+            <span class="ph-text">avatar-axel.png</span>
+            <span class="ph-hint">/public/assets/avatar-axel.png</span>
+          </div>
+          <div class="avatar-glow"></div>
+        </div>
+      </div>
+
+      <div class="col-text">
+        <p class="section-eyebrow">QUIÉN SOY</p>
+        <h2 class="section-title">Construyo el futuro <span class="glow-text">con IA</span>, desde Salta.</h2>
+        <p class="section-lead">
+          Tengo 26 años, soy desarrollador, consultor y educador en Inteligencia Artificial.
+          Mi misión es <strong>llevar la IA a negocios reales</strong>: apps que ahorran horas,
+          agentes que atienden clientes y herramientas que automatizan lo que antes se hacía a mano.
+        </p>
+        <p class="section-text">
+          Trabajo con organizaciones como la <strong>Fundación FIEL de Salta</strong>, doy
+          seminarios presenciales de IA y desarrollo apps SaaS para emprendedores, YouTubers y empresas.
+        </p>
+
+        <ul class="chip-list">
+          <li>Agentes de IA</li>
+          <li>Automatizaciones</li>
+          <li>Apps con IA</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICIOS ==================== -->
+  <section id="servicios" class="section">
+    <div class="container">
+      <p class="section-eyebrow center">QUÉ HAGO</p>
+      <h2 class="section-title center">Servicios</h2>
+      <p class="section-lead center">Cuatro formas en las que puedo ayudarte a integrar IA en tu negocio o vida.</p>
+
+      <div class="grid grid-4">
+        <article class="glass-card service-card">
+          <div class="service-icon">⚡</div>
+          <h3>Apps con IA a medida</h3>
+          <p>Diseño y desarrollo apps SaaS y herramientas internas que usan modelos como Claude o Gemini para resolver problemas reales de tu negocio.</p>
+        </article>
+
+        <article class="glass-card service-card">
+          <div class="service-icon">⚙</div>
+          <h3>Automatización de procesos</h3>
+          <p>Convierto tareas manuales repetitivas (cargar facturas, generar certificados, filtrar listas) en flujos automáticos de un clic.</p>
+        </article>
+
+        <article class="glass-card service-card">
+          <div class="service-icon">🎤</div>
+          <h3>Seminarios de IA</h3>
+          <p>Doy seminarios presenciales para estudiantes, profesionales, empresas y equipos. Demos en vivo y aplicaciones prácticas.</p>
+        </article>
+
+        <article class="glass-card service-card">
+          <div class="service-icon">◎</div>
+          <h3>Consultoría IA para empresas</h3>
+          <p>Analizo procesos de tu organización y diseño una hoja de ruta para integrar IA donde más impacto tenga.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PORTFOLIO ==================== -->
+  <section id="portfolio" class="section">
+    <div class="container">
+      <p class="section-eyebrow center">PORTFOLIO</p>
+      <h2 class="section-title center">Apps que <span class="glow-text">construí</span></h2>
+      <p class="section-lead center">7 proyectos reales, desde SaaS comerciales hasta herramientas internas para clientes.</p>
+
+      <div class="grid grid-3 portfolio-grid">
+
+        <!-- 1. Clickangles -->
+        <article class="glass-card project-card featured">
+          <div class="project-badge">⭐ Destacado</div>
+          <div class="project-thumb">
+            <!-- PLACEHOLDER: /public/assets/apps/clickangles.png -->
+            <div class="thumb-placeholder">CLICKANGLES</div>
+          </div>
+          <div class="project-body">
+            <div class="project-tags"><span>SaaS</span><span>YouTube</span><span>IA</span></div>
+            <h3>Clickangles</h3>
+            <p>Generador de thumbnails para YouTube potenciado con IA. Para diseñadores y creadores de contenido.</p>
+            <div class="project-stack"><b>Stack:</b> React · Claude API · Vercel</div>
+            <div class="project-actions">
+              <a href="https://clickangles.sistemaniki.com" target="_blank" rel="noopener" class="btn btn-sm btn-primary">Visitar app</a>
+              <button class="btn btn-sm btn-ghost" data-loom="LOOM-CLICKANGLES">Ver demo</button>
+            </div>
+            <!-- PLACEHOLDER LOOM:
+                 <iframe src="https://www.loom.com/embed/LOOM-CLICKANGLES" frameborder="0" allowfullscreen></iframe>
+            -->
+          </div>
+        </article>
+
+        <!-- 2. Luna -->
+        <article class="glass-card project-card">
+          <div class="project-thumb">
+            <!-- PLACEHOLDER: /public/assets/apps/luna.png -->
+            <div class="thumb-placeholder">LUNA · BELLA STUDIO</div>
+          </div>
+          <div class="project-body">
+            <div class="project-tags"><span>Agente IA</span><span>Voz</span><span>Demo</span></div>
+            <h3>Luna — Agente IA</h3>
+            <p>Agente conversacional con voz argentina para una cosmética. Agenda citas (uñas, cejas) en Excel automáticamente.</p>
+            <div class="project-stack"><b>Stack:</b> Claude API · Web Speech API · HTML</div>
+            <div class="project-actions">
+              <button class="btn btn-sm btn-ghost" data-loom="LOOM-LUNA">Ver demo</button>
+            </div>
+            <!-- PLACEHOLDER LOOM:
+                 <iframe src="https://www.loom.com/embed/LOOM-LUNA" frameborder="0" allowfullscreen></iframe>
+            -->
+          </div>
+        </article>
+
+        <!-- 3. Aula Virtual FIEL -->
+        <article class="glass-card project-card">
+          <div class="project-thumb project-thumb--video">
+            <iframe
+              src="https://www.loom.com/embed/c15c88543ce643698965d30ea5ff19d0"
+              title="Aula Virtual FIEL — demo"
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen
+              loading="lazy"></iframe>
+          </div>
+          <div class="project-body">
+            <div class="project-tags"><span>Plataforma</span><span>Educación</span><span>Cliente real</span></div>
+            <h3>Aula Virtual FIEL</h3>
+            <p>Plataforma completa de cursos virtuales y gestión de alumnos para la Fundación FIEL de Salta. En uso real.</p>
+            <div class="project-stack"><b>Stack:</b> React · Supabase · Vercel</div>
+            <div class="project-actions">
+              <span class="status-pill">En uso real</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Certificados Masivos FIEL -->
+        <article class="glass-card project-card">
+          <div class="project-thumb">
+            <!-- PLACEHOLDER: /public/assets/apps/certificados-fiel.png -->
+            <div class="thumb-placeholder">CERTIFICADOS MASIVOS</div>
+          </div>
+          <div class="project-body">
+            <div class="project-tags"><span>Automatización</span><span>Cliente real</span></div>
+            <h3>App de Certificados Masivos</h3>
+            <p>Genera y exporta certificados en lote con un clic. Antes se hacían 1×1 en Canva — ahora todos a la vez.</p>
+            <div class="project-stack"><b>Stack:</b> HTML · JS · Canvas API</div>
+            <div class="project-actions">
+              <button class="btn btn-sm btn-ghost" data-loom="LOOM-CERTIFICADOS">Ver demo</button>
+            </div>
+            <!-- PLACEHOLDER LOOM:
+                 <iframe src="https://www.loom.com/embed/LOOM-CERTIFICADOS" frameborder="0" allowfullscreen></iframe>
+            -->
+          </div>
+        </article>
+
+        <!-- 5. FiscalIA -->
+        <article class="glass-card project-card">
+          <div class="project-thumb">
+            <!-- PLACEHOLDER: /public/assets/apps/fiscalia.png -->
+            <div class="thumb-placeholder">FISCALIA</div>
+          </div>
+          <div class="project-body">
+            <div class="project-tags"><span>SaaS</span><span>OCR</span><span>Contabilidad</span></div>
+            <h3>FiscalIA</h3>
+            <p>Extrae datos de facturas físicas con una foto: proveedor, montos, IVA, IIBB. Elimina la carga manual.</p>
+            <div class="project-stack"><b>Stack:</b> Gemini Vision · React · Supabase</div>
+            <div class="project-actions">
+              <button class="btn btn-sm btn-ghost" data-loom="LOOM-FISCALIA">Ver demo</button>
+            </div>
+            <!-- PLACEHOLDER LOOM:
+                 <iframe src="https://www.loom.com/embed/LOOM-FISCALIA" frameborder="0" allowfullscreen></iframe>
+            -->
+          </div>
+        </article>
+
+        <!-- 6. Super Profesor IA -->
+        <article class="glass-card project-card">
+          <div class="project-thumb">
+            <!-- PLACEHOLDER: /public/assets/apps/super-profesor.png -->
+            <div class="thumb-placeholder">SUPER PROFESOR IA</div>
+          </div>
+          <div class="project-body">
+            <div class="project-tags"><span>Eventos en vivo</span><span>Juego</span><span>Gemini</span></div>
+            <h3>Super Profesor IA</h3>
+            <p>Agente Gemini que conduce un juego de preguntas en vivo (hombres vs mujeres) durante mis seminarios.</p>
+            <div class="project-stack"><b>Stack:</b> Gemini API · HTML · JS</div>
+            <div class="project-actions">
+              <button class="btn btn-sm btn-ghost" data-loom="LOOM-SUPERPROFESOR">Ver demo</button>
+            </div>
+            <!-- PLACEHOLDER LOOM:
+                 <iframe src="https://www.loom.com/embed/LOOM-SUPERPROFESOR" frameborder="0" allowfullscreen></iframe>
+            -->
+          </div>
+        </article>
+
+        <!-- 7. Filtrador de Repuestos PRO -->
+        <article class="glass-card project-card">
+          <div class="project-thumb project-thumb--video">
+            <iframe
+              src="https://www.loom.com/embed/5cb64bdb77894683aec5765529b500d2"
+              title="Filtrador de Repuestos PRO — demo"
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen
+              loading="lazy"></iframe>
+          </div>
+          <div class="project-body">
+            <div class="project-tags"><span>Automatización</span><span>Excel</span></div>
+            <h3>Filtrador de Repuestos PRO</h3>
+            <p>App HTML que filtra automáticamente repuestos Ford desde listas de precios Excel. Ahorra horas mensuales.</p>
+            <div class="project-stack"><b>Stack:</b> HTML · JS · SheetJS</div>
+            <div class="project-actions">
+              <span class="status-pill">En uso real</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SEMINARIOS ==================== -->
+  <section id="seminarios" class="section">
+    <div class="container">
+      <p class="section-eyebrow center">EVENTOS PRESENCIALES</p>
+      <h2 class="section-title center">Seminarios de <span class="glow-text">Inteligencia Artificial</span></h2>
+      <p class="section-lead center">
+        Doy seminarios presenciales en Salta, Argentina. Para estudiantes, profesionales,
+        equipos de trabajo, empresas y organizaciones. Con demos en vivo de mis propias apps.
+      </p>
+
+      <!-- Galería de fotos -->
+      <div class="grid grid-3 seminar-gallery">
+        <div class="seminar-photo">
+          <!-- PLACEHOLDER: /public/assets/seminarios/seminario-1.jpg -->
+          <div class="thumb-placeholder">seminario-1.jpg</div>
+        </div>
+        <div class="seminar-photo">
+          <!-- PLACEHOLDER: /public/assets/seminarios/seminario-2.jpg -->
+          <div class="thumb-placeholder">seminario-2.jpg</div>
+        </div>
+        <div class="seminar-photo">
+          <!-- PLACEHOLDER: /public/assets/seminarios/seminario-3.jpg -->
+          <div class="thumb-placeholder">seminario-3.jpg</div>
+        </div>
+      </div>
+
+      <!-- Videos de seminarios -->
+      <div class="grid grid-2 seminar-videos">
+        <div class="glass-card video-card">
+          <div class="video-wrapper">
+            <!-- PLACEHOLDER: reemplazar VIDEO-ID-1 con el ID real de YouTube (sin listar) -->
+            <div class="video-placeholder">
+              <span class="vp-icon">▶</span>
+              <span class="vp-text">YouTube · VIDEO-ID-1</span>
+              <span class="vp-hint">https://www.youtube.com/embed/VIDEO-ID-1</span>
+            </div>
+            <!--
+              <iframe src="https://www.youtube.com/embed/VIDEO-ID-1" frameborder="0" allowfullscreen></iframe>
+            -->
+          </div>
+          <h3>IA para el Éxito Académico y Profesional</h3>
+          <p>Seminario presencial en Salta · 2025</p>
+        </div>
+
+        <div class="glass-card video-card">
+          <div class="video-wrapper">
+            <!-- PLACEHOLDER: reemplazar VIDEO-ID-2 con el ID real de YouTube (sin listar) -->
+            <div class="video-placeholder">
+              <span class="vp-icon">▶</span>
+              <span class="vp-text">YouTube · VIDEO-ID-2</span>
+              <span class="vp-hint">https://www.youtube.com/embed/VIDEO-ID-2</span>
+            </div>
+            <!--
+              <iframe src="https://www.youtube.com/embed/VIDEO-ID-2" frameborder="0" allowfullscreen></iframe>
+            -->
+          </div>
+          <h3>IA aplicada a empresas y organizaciones</h3>
+          <p>Seminario a medida · 2025</p>
+        </div>
+      </div>
+
+      <div class="seminar-cta glass-card">
+        <div>
+          <h3>¿Querés que lleve un seminario a tu organización?</h3>
+          <p>Diseño contenidos a medida para empresas, fundaciones, universidades y equipos.</p>
+        </div>
+        <a href="#contacto" class="btn btn-primary">Contratar seminario</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACTO ==================== -->
+  <section id="contacto" class="section">
+    <div class="container">
+      <p class="section-eyebrow center">HABLEMOS</p>
+      <h2 class="section-title center">Contacto</h2>
+      <p class="section-lead center">¿Tenés un proyecto, una idea o querés contratarme? Escribime.</p>
+
+      <div class="grid grid-2 contact-grid">
+        <div class="glass-card contact-direct">
+          <h3>Contacto directo</h3>
+          <p class="contact-sub">Respondo rápido, todos los días.</p>
+
+          <a href="https://wa.me/5493875551234?text=Hola%20Axel%2C%20vengo%20de%20sistemaniki.com" target="_blank" rel="noopener" class="contact-link whatsapp">
+            <span class="cl-icon">💬</span>
+            <div>
+              <span class="cl-label">WhatsApp</span>
+              <span class="cl-value">+54 9 387 555-1234</span>
+            </div>
+          </a>
+
+          <a href="mailto:lopezaxelalejandro@gmail.com" class="contact-link">
+            <span class="cl-icon">✉</span>
+            <div>
+              <span class="cl-label">Email</span>
+              <span class="cl-value">lopezaxelalejandro@gmail.com</span>
+            </div>
+          </a>
+
+          <a href="https://sistemaniki.com" class="contact-link">
+            <span class="cl-icon">◉</span>
+            <div>
+              <span class="cl-label">Web</span>
+              <span class="cl-value">sistemaniki.com</span>
+            </div>
+          </a>
+
+          <a href="https://clickangles.sistemaniki.com" target="_blank" rel="noopener" class="contact-link">
+            <span class="cl-icon">⭐</span>
+            <div>
+              <span class="cl-label">App destacada</span>
+              <span class="cl-value">clickangles.sistemaniki.com</span>
+            </div>
+          </a>
+        </div>
+
+        <form class="glass-card contact-form" id="contactForm">
+          <h3>Mandame un mensaje</h3>
+
+          <label>
+            <span>Nombre</span>
+            <input type="text" name="nombre" required placeholder="Tu nombre" />
+          </label>
+
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required placeholder="tu@email.com" />
+          </label>
+
+          <label>
+            <span>¿En qué te puedo ayudar?</span>
+            <select name="tipo">
+              <option value="app">Quiero una app con IA</option>
+              <option value="automatizacion">Automatizar un proceso</option>
+              <option value="seminario">Contratar un seminario</option>
+              <option value="consultoria">Consultoría IA</option>
+              <option value="otro">Otro</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Mensaje</span>
+            <textarea name="mensaje" rows="4" required placeholder="Contame brevemente tu idea o proyecto..."></textarea>
+          </label>
+
+          <button type="submit" class="btn btn-primary btn-block">Enviar mensaje</button>
+          <p class="form-note" id="formNote"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <a href="#hero" class="nav-logo">
+          <span class="logo-mark">A</span>
+          <span class="logo-text">SISTEMA<strong>NIKI</strong></span>
+        </a>
+        <p class="footer-tag">Construyendo el futuro con IA · desde Salta, Argentina.</p>
+      </div>
+
+      <nav class="footer-links">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#seminarios">Seminarios</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <p class="footer-copy">© <span id="year">2026</span> Axel Lopez · sistemaniki.com</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
