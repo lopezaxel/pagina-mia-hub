@@ -438,6 +438,18 @@ button { font-family: inherit; cursor: pointer; }
   aspect-ratio: 4 / 5;
   padding: 0;
   overflow: hidden;
+  width: 100%;
+}
+.avatar-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: inherit;
+  z-index: 1;
+  display: block;
 }
 .avatar-placeholder {
   position: absolute; inset: 0;
@@ -661,7 +673,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .carousel-track {
   display: flex;
-  gap: 1.25rem;
+  gap: 0;
   width: max-content;
   animation: carouselLeft 28s linear infinite;
 }
@@ -681,6 +693,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .carousel-slide {
   flex: 0 0 clamp(200px, 26vw, 340px);
+  margin-right: 1.25rem;
 }
 .carousel-slide .seminar-photo {
   margin: 0;
@@ -1003,7 +1016,8 @@ button { font-family: inherit; cursor: pointer; }
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
-  .col-img { max-width: 380px; margin: 0 auto; }
+  .col-img { max-width: 380px; margin: 0 auto; width: 100%; }
+  .avatar-frame { min-height: 260px; }
   .seminar-cta { flex-direction: column; text-align: center; }
 }
 
