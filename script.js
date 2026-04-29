@@ -45,6 +45,15 @@
 
   revealTargets.forEach(el => io.observe(el));
 
+  /* -------------------- SEMINAR CAROUSEL (auto-scroll infinite) -------------------- */
+  document.querySelectorAll('.carousel-track').forEach(track => {
+    Array.from(track.children).forEach(slide => {
+      const clone = slide.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+  });
+
   /* -------------------- LOOM PLACEHOLDER BUTTONS -------------------- */
   document.querySelectorAll('[data-loom]').forEach(btn => {
     btn.addEventListener('click', () => {
