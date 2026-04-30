@@ -58,14 +58,28 @@
   document.querySelectorAll('[data-loom]').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-loom');
-      // PLACEHOLDER: cuando tengas el ID real, este botón debería abrir el video.
-      // Reemplazar por: window.open(`https://www.loom.com/share/${id}`, '_blank');
       alert(
         `Video demo pendiente de subir.\n\n` +
         `ID placeholder: ${id}\n` +
         `Cuando lo subas a Loom, reemplazá el placeholder en index.html por el iframe real.`
       );
     });
+  });
+
+  /* -------------------- LOOM FACADE (carga bajo demanda) -------------------- */
+  document.querySelectorAll('.loom-facade').forEach(facade => {
+    const activate = () => {
+      const src = facade.getAttribute('data-src');
+      const iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.frameBorder = '0';
+      iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+      facade.replaceWith(iframe);
+    };
+    facade.addEventListener('click', activate);
+    facade.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') activate(); });
   });
 
   /* -------------------- CONTACT FORM -------------------- */
