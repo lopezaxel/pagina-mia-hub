@@ -605,6 +605,29 @@ button { font-family: inherit; cursor: pointer; }
   display: block;
 }
 
+.yt-facade, .loom-facade {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  background-color: #000;
+  transition: filter 0.2s;
+}
+.loom-facade { background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 100%); }
+.yt-facade:hover, .loom-facade:hover { filter: brightness(1.12); }
+.vid-play-icon {
+  width: 72px;
+  height: 72px;
+  opacity: 0.85;
+  transition: opacity 0.2s, transform 0.2s;
+  filter: drop-shadow(0 0 16px rgba(255,60,60,0.5));
+}
+.yt-facade:hover .vid-play-icon,
+.loom-facade:hover .vid-play-icon { opacity: 1; transform: scale(1.08); }
 
 .project-body {
   padding: 1.5rem;

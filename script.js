@@ -66,7 +66,40 @@
     });
   });
 
-/* -------------------- CONTACT FORM -------------------- */
+  /* -------------------- VIDEO FACADES (YouTube + Loom) -------------------- */
+  document.querySelectorAll('.yt-facade').forEach(facade => {
+    const id = facade.getAttribute('data-id');
+    facade.style.backgroundImage = `url(https://img.youtube.com/vi/${id}/hqdefault.jpg)`;
+    const activate = () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+      iframe.frameBorder = '0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+      facade.replaceWith(iframe);
+    };
+    facade.addEventListener('click', activate);
+    facade.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') activate(); });
+  });
+
+  document.querySelectorAll('.loom-facade').forEach(facade => {
+    const activate = () => {
+      const src = facade.getAttribute('data-src');
+      const iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.frameBorder = '0';
+      iframe.setAttribute('webkitallowfullscreen', '');
+      iframe.setAttribute('mozallowfullscreen', '');
+      iframe.allowFullscreen = true;
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+      facade.replaceWith(iframe);
+    };
+    facade.addEventListener('click', activate);
+    facade.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') activate(); });
+  });
+
+  /* -------------------- CONTACT FORM -------------------- */
   const form = document.getElementById('contactForm');
   const note = document.getElementById('formNote');
   if (form) {
