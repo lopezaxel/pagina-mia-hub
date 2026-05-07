@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "Bash(npm --version)",
-      "Bash(py --version)"
+      "Bash(py --version)",
+      "PowerShell(Get-ChildItem -Path \"d:\\\\ad\\\\otross\\\\antigrav\\\\pagina-mia-hub\" -Recurse | Where-Object { $_.Extension -match '\\\\.\\(js|jsx|ts|tsx\\)$' } | ForEach-Object { $_.FullName })",
+      "PowerShell(Get-ChildItem -Path \"d:\\\\ad\\\\otross\\\\antigrav\\\\pagina-mia-hub\" -Directory | ForEach-Object { $_.Name })",
+      "PowerShell(Get-ChildItem -Path \"d:\\\\ad\\\\otross\\\\antigrav\\\\pagina-mia-hub\" -File | ForEach-Object { $_.FullName })",
+      "PowerShell(Get-ChildItem -Path \"d:\\\\ad\\\\otross\\\\antigrav\\\\pagina-mia-hub\\\\public\\\\assets\\\\misc\" -File | ForEach-Object { $_.FullName })",
+      "Bash(findstr /i \"axel desarrollador agentico\")"
     ]
   }
 }
