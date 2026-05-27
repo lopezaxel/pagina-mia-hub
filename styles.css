@@ -202,7 +202,9 @@ button { font-family: inherit; cursor: pointer; }
   border: 1px solid transparent;
   transition: all .25s ease;
   cursor: pointer;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
+  text-align: center;
 }
 .btn-primary {
   background: linear-gradient(135deg, var(--primary), var(--primary-3));
@@ -223,7 +225,7 @@ button { font-family: inherit; cursor: pointer; }
   border-color: var(--primary-3);
   box-shadow: 0 0 15px var(--glow-soft);
 }
-.btn-sm  { padding: 0.55rem 1.1rem; font-size: 0.78rem; letter-spacing: 1.5px; }
+.btn-sm  { padding: 0.55rem 1.1rem; font-size: 0.78rem; letter-spacing: 1.5px; white-space: nowrap; }
 .btn-block { width: 100%; }
 
 /* ============================ NAV ============================ */
@@ -312,7 +314,7 @@ button { font-family: inherit; cursor: pointer; }
   background: transparent;
   border: 1px solid var(--border-strong);
   border-radius: 6px;
-  width: 40px; height: 40px;
+  width: 44px; height: 44px;  /* mínimo 44px para touch en Android */
   padding: 0;
   flex-direction: column;
   justify-content: center;
@@ -329,7 +331,8 @@ button { font-family: inherit; cursor: pointer; }
 /* ============================ HERO ============================ */
 .hero {
   position: relative;
-  height: 100vh;
+  height: 100vh;      /* fallback */
+  height: 100svh;     /* Android Chrome: excluye la barra de URL */
   overflow: hidden;
   display: flex;
   align-items: flex-end;
@@ -975,6 +978,8 @@ button { font-family: inherit; cursor: pointer; }
 .cl-value {
   display: block;
   font-weight: 500;
+  word-break: break-all;   /* email largo no desborda en móvil */
+  overflow-wrap: break-word;
 }
 
 .contact-form {
@@ -1533,4 +1538,142 @@ button { font-family: inherit; cursor: pointer; }
   .cta-final-card { padding: 3rem 1.5rem; }
   .hero-title { font-size: clamp(1.6rem, 6vw, 2.4rem); }
   .consultoria-bloque { margin-top: 3rem; }
+}
+
+/* ======================== MOBILE ANDROID FIX ======================== */
+
+/* Tarjetas de contacto — apiladas en móvil */
+.contact-cards {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+@media (max-width: 640px) {
+  .contact-cards {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1rem !important;
+  }
+  .contact-cards > .glass-card {
+    flex: none !important;
+    max-width: 100% !important;
+    width: 100%;
+  }
+}
+
+/* Hero intro — menos padding en móvil */
+@media (max-width: 720px) {
+  .hero-intro {
+    padding: 2rem 1rem 1.5rem;
+  }
+  /* Botón WhatsApp — más compacto */
+  .btn-whatsapp {
+    padding: 0.9rem 1.4rem;
+    font-size: 0.95rem;
+  }
+  /* Seminar CTA botón full width */
+  .seminar-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Hover pegajoso en Android — desactivar transform en touch */
+@media (hover: none) {
+  .glass-card:hover    { transform: none; }
+  .btn-primary:hover   { transform: none; }
+  .btn-ghost:hover     { transform: none; }
+  .btn-whatsapp:hover  { transform: none; }
+  .contact-link:hover  { transform: none; }
+  .footer-social-link:hover { transform: none; }
+  .target-card:hover   { transform: none; }
+
+  /* Feedback visual al tap en lugar de hover */
+  .btn:active          { opacity: 0.78; transform: scale(0.97); }
+  .glass-card:active   {
+    border-color: var(--border-strong);
+    box-shadow: 0 0 18px var(--glow-soft);
+  }
+}
+
+/* Pantallas muy pequeñas ≤ 360px */
+@media (max-width: 360px) {
+  .container           { padding: 0 0.9rem; }
+  .glass-card          { padding: 1.2rem; }
+  .cta-final-card      { padding: 1.8rem 1rem; }
+  .hero-intro          { padding: 1.5rem 0.9rem 1.5rem; }
+  .section             { padding: clamp(2.5rem, 7vw, 4rem) 0; }
+  .nav-inner           { padding: 0 0.9rem; }
+  .seminar-cta         { padding: 1.2rem; }
+}
+
+/* ── HERO MÓVIL — imagen completa visible, sin recorte ── */
+@media (max-width: 720px) {
+  /* 1. El hero ya no tiene altura fija — se adapta a la imagen */
+  .hero {
+    height: auto !important;
+    min-height: 0 !important;
+    display: block;
+    overflow: visible;
+  }
+
+  /* 2. hero-brand sale de position:absolute y entra al flujo normal */
+  .hero-brand {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    /* Fade suave arriba (navbar) y abajo (blend con hero-intro) */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 6%,
+      black 90%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 6%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  /* 3. La imagen muestra su proporción natural — flyer completo */
+  .hero-brand-img {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;         /* altura automática = proporciones reales del flyer */
+    object-fit: initial;  /* no hace crop */
+    will-change: auto;
+    animation: none;      /* sin Ken Burns ni glitch en móvil (mejor perf.) */
+  }
+
+  /* 4. Apagar el barrido de luz diagonal en móvil (CPU/GPU) */
+  .hero-brand::after {
+    display: none;
+  }
+
+  /* 5. Vignette — ahora relativa al tamaño real de la imagen */
+  .hero-brand-fx {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+  }
+
+  /* 6. Scroll indicator — sale de absolute y queda centrado debajo */
+  .hero-scroll {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 0 0.5rem;
+    margin-top: -4px;   /* pega visualmente con el borde del flyer */
+  }
 }
