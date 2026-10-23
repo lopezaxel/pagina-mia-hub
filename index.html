@@ -1,423 +1,424 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Desarrollo y vendo software con IA incrustada para negocios de toda LATAM. Apps, agentes y automatizaciones que resuelven problemas reales." />
-  <meta name="keywords" content="IA, Inteligencia Artificial, Consultor IA, Apps con IA, Salta, Argentina, Consultoría, Claude, Gemini" />
+  <title>Axel Lopez | NIKI Software · Software con IA para tu negocio</title>
+  <meta name="description" content="Desarrollo y vendo software con IA incrustada para negocios de toda LATAM. Apps, agentes y automatizaciones que resuelven problemas reales. Desde Salta, Argentina." />
   <meta name="author" content="Axel Lopez" />
+  <meta name="theme-color" content="#0b0707" />
+  <link rel="canonical" href="https://pagina-mia-hub.vercel.app/" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Axel Lopez | Sistema Niki — AI App Builder · Software con IA para tu negocio" />
-  <meta property="og:description" content="Consultorías personalizadas de IA y desarrollo de apps a medida — presencial en Salta o virtual. Para individuos, equipos, empresas e instituciones." />
+  <meta property="og:title" content="Axel Lopez | NIKI Software · Software con IA para tu negocio" />
+  <meta property="og:description" content="Apps, agentes y automatizaciones con IA a medida para negocios de toda LATAM. Consultorías y seminarios presenciales en Salta o virtuales." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sistemaniki.com" />
+  <meta property="og:url" content="https://pagina-mia-hub.vercel.app/" />
+  <meta property="og:image" content="https://pagina-mia-hub.vercel.app/public/assets/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="es_AR" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  <title>Axel Lopez | Sistema Niki — AI App Builder · Software con IA para tu negocio</title>
-
-  <!-- Google Fonts -->
+  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@600;700;800&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23080000'/%3E%3Ctext x='50' y='68' font-family='Orbitron,sans-serif' font-size='60' font-weight='900' text-anchor='middle' fill='%23ff2200'%3EA%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "NIKI Software",
+    "description": "Software con IA incrustada para negocios de LATAM: apps a medida, agentes de IA, automatizaciones y capacitaciones.",
+    "url": "https://pagina-mia-hub.vercel.app/",
+    "email": "lopezaxelalejandro@gmail.com",
+    "areaServed": "LATAM",
+    "address": { "@type": "PostalAddress", "addressLocality": "Salta", "addressCountry": "AR" },
+    "founder": {
+      "@type": "Person",
+      "name": "Axel Lopez",
+      "jobTitle": "Desarrollador agéntico y AI App Builder",
+      "sameAs": [
+        "https://www.instagram.com/axelopez.niki",
+        "https://www.linkedin.com/in/axel-lopez-05b138299"
+      ]
+    }
+  }
+  </script>
 </head>
 <body>
 
-  <!-- ==================== ANIMATED BACKGROUND ==================== -->
-  <div class="bg-grid"></div>
-  <div class="bg-circuit-glow"></div>
-  <canvas id="particles-canvas" aria-hidden="true"></canvas>
-  <svg class="bg-waves" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 1440 800">
-    <path class="wave wave-1" d="M0,400 Q360,300 720,400 T1440,400" />
-    <path class="wave wave-2" d="M0,420 Q360,520 720,420 T1440,420" />
-    <path class="wave wave-3" d="M0,440 Q360,340 720,440 T1440,440" />
+  <!-- Iconos (sprite inline, sin librerías externas) -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.5"/><path d="M16.8 7.2h.01"/></symbol>
+    <symbol id="i-in" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3v7h6l-8 11v-7H5l8-11"/></symbol>
+    <symbol id="i-cycle" viewBox="0 0 24 24"><path d="M20 11a8.1 8.1 0 0 0-15.5-2M4 5v4h4M4 13a8.1 8.1 0 0 0 15.5 2M20 19v-4h-4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 1.5l2.6 8.4 8.4 2.6-8.4 2.6L12 23.5l-2.6-8.4L1 12.5l8.4-2.6z" fill="currentColor" stroke="none"/></symbol>
   </svg>
 
-  <!-- ==================== NAVBAR ==================== -->
-  <header class="nav">
-    <div class="nav-inner">
-      <a href="#hero" class="nav-logo">
-        <span class="logo-mark">A</span>
-        <span class="logo-text">SISTEMA<strong>NIKI</strong></span>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <div class="progress" aria-hidden="true"></div>
+
+  <!-- ==================== NAV ==================== -->
+  <header class="nav" id="nav">
+    <div class="nav-inner wrap">
+      <a href="#hero" class="nav-logo" aria-label="NIKI Software, inicio">
+        <span class="logo-text"><strong>NIKI</strong> SOFTWARE</span>
       </a>
 
-      <nav class="nav-links" id="navLinks">
+      <nav class="nav-links" id="navLinks" aria-label="Principal">
         <a href="#sobre-mi">Sobre mí</a>
         <a href="#apps">Apps a medida</a>
         <a href="#seminarios">Seminarios</a>
         <a href="#contacto" class="nav-cta">Contacto</a>
       </nav>
 
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <!-- ==================== HERO ==================== -->
-  <section id="hero" class="hero">
-    <div class="hero-brand">
-      <img
-        src="public/assets/misc/fondo%20de%20pantalla%20pc.png"
-        alt="NIKI — Software & Apps de IA"
-        class="hero-brand-img" />
-      <div class="hero-brand-fx" aria-hidden="true"></div>
-    </div>
-    <a href="#hero-intro" class="hero-scroll" aria-label="Scroll">
-      <span></span>
-    </a>
-  </section>
+  <main id="contenido">
 
-  <!-- ==================== HERO INTRO (títulos) ==================== -->
-  <section id="hero-intro" class="hero-intro">
-    <div class="container">
-      <h1 class="hero-title">
-        TU NEGOCIO NECESITA IA? YO LA CONSTRUYO!
-      </h1>
-      <p class="hero-tagline">
-        Desarrollo y vendo software con IA incrustada para negocios de toda LATAM.
-        Apps, agentes y automatizaciones que resuelven problemas reales.
-      </p>
-      <div class="hero-cta">
-        <a href="https://wa.me/5493876855489" target="_blank" rel="noopener" class="btn btn-whatsapp">
-          💬 Quiero empezar — Escribime al WhatsApp
-        </a>
-      </div>
-    </div>
-  </section>
+    <!-- ==================== HERO ==================== -->
+    <div class="hero-wrap">
+      <section id="hero" class="hero">
+        <div class="hero-glow" aria-hidden="true"></div>
 
-  <!-- ==================== SOBRE MÍ ==================== -->
-  <section id="sobre-mi" class="section">
-    <div class="container two-col">
-      <div class="col-img">
-        <div class="avatar-frame glass-card">
-          <img src="public/assets/misc/1775610847649.png" alt="Axel Lopez — Consultor de IA" class="avatar-img" />
-          <div class="avatar-glow"></div>
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="chip chip--live"><i></i>Desarrollador agéntico · Salta, Argentina</p>
+            <h1 class="hero-title">
+              <span class="line"><span>¿Tu negocio</span></span>
+              <span class="line"><span>necesita IA?</span></span>
+              <span class="line line--red"><span>Yo la construyo.</span></span>
+            </h1>
+            <p class="hero-lead">
+              Desarrollo y vendo software con IA incrustada para negocios de toda LATAM.
+              Apps, agentes y automatizaciones que resuelven problemas reales.
+            </p>
+            <div class="hero-cta">
+              <a href="https://wa.me/5493876855489" target="_blank" rel="noopener" class="btn btn--red magnet">
+                <svg class="ico"><use href="#i-wa"/></svg>Escribime por WhatsApp
+              </a>
+              <a href="#apps" class="btn btn--ghost magnet">Ver proyectos</a>
+            </div>
+            <ul class="hero-proof" aria-label="Trayectoria">
+              <li>Apps para Fundación FIEL</li>
+              <li>Capacitación a la Policía de Salta</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Retrato: Axel y un androide, espalda con espalda, unidos por un cerebro de circuitos -->
+        <div class="hero-art" id="heroArt">
+          <div class="art-float">
+            <div class="art-stage">
+              <img class="art-img" src="public/assets/opt/hero-ia-1400.webp"
+                   srcset="public/assets/opt/hero-ia-800.webp 800w, public/assets/opt/hero-ia-1400.webp 1400w"
+                   sizes="(max-width: 860px) 100vw, 56vw" width="1400" height="1400"
+                   alt="Retrato de perfil de Axel Lopez junto a un androide, unidos por un cerebro de circuitos rojos" fetchpriority="high" decoding="async" />
+              <span class="art-core" aria-hidden="true"></span>
+              <span class="art-rays" aria-hidden="true"></span>
+              <span class="art-sweep" aria-hidden="true"></span>
+            </div>
+            <canvas class="art-sparks" id="artSparks" aria-hidden="true"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Banda en movimiento -->
+      <div class="band" aria-hidden="true">
+        <div class="band-track">
+          <span>Agentes de IA</span><svg class="ico"><use href="#i-star"/></svg>
+          <span>Automatizaciones</span><svg class="ico"><use href="#i-star"/></svg>
+          <span>Apps a medida</span><svg class="ico"><use href="#i-star"/></svg>
+          <span>Capacitaciones</span><svg class="ico"><use href="#i-star"/></svg>
+          <span>Seminarios</span><svg class="ico"><use href="#i-star"/></svg>
         </div>
       </div>
+    </div>
 
-      <div class="col-text">
-        <p class="section-eyebrow">QUIÉN SOY</p>
-        <h2 class="section-title">Construyo software con IA para negocios de <span class="glow-text">toda LATAM</span></h2>
-        <p class="section-lead">
-          Soy Axel Lopez, tengo 25 años, soy desarrollador agéntico y AI App Builder.
-          Construyo y vendo <strong>software con IA incrustada para negocios de toda LATAM</strong>. Apps que ahorran horas,
-          agentes que atienden clientes y automatizaciones que reemplazan trabajo manual.
+    <!-- ==================== SOBRE MÍ (claro) ==================== -->
+    <section id="sobre-mi" class="sec sec--bone slant">
+      <div class="wrap about">
+        <div class="about-photo" data-reveal>
+          <div class="photo-frame">
+            <img src="public/assets/opt/1775610847649.webp" width="900" height="1100" alt="Axel Lopez, consultor de IA y desarrollador agéntico, frente a una pantalla con su nombre" loading="lazy" decoding="async" />
+          </div>
+          <svg class="badge-spin" viewBox="0 0 200 200" aria-hidden="true">
+            <defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+            <circle cx="100" cy="100" r="100" class="badge-bg"/>
+            <text><textPath href="#circ" startOffset="0">DESARROLLADOR AGÉNTICO ✦ AI APP BUILDER ✦ </textPath></text>
+          </svg>
+          <svg class="badge-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </div>
+
+        <div class="about-text">
+          <p class="eyebrow" data-reveal>Quién soy</p>
+          <h2 class="h2" data-reveal>Soy Axel Lopez, <em>AI App Builder</em></h2>
+          <p class="lead" data-reveal>
+            Tengo 25 años y <strong>creo software que ahorra horas</strong>, atiende clientes y reemplaza trabajo manual.
+          </p>
+          <p class="body-text" data-reveal>
+            Trabajo con empresas y emprendedores. Hice apps para decenas de negocios y organizaciones de Argentina.
+          </p>
+
+          <ul class="stats" data-reveal>
+            <li><b data-count="10" data-prefix="+">+10</b><span>seminarios de IA dados en Salta</span></li>
+            <li><b data-count="5">5</b><span>proyectos con demo en video</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== APPS A MEDIDA (oscuro) ==================== -->
+    <section id="apps" class="sec sec--ink slant">
+      <div class="apps-glow" aria-hidden="true"></div>
+      <div class="wrap">
+        <p class="eyebrow center" data-reveal>Cómo trabajo</p>
+        <h2 class="h2 center" data-reveal>¿Una solución concreta? <em>La armo para vos.</em></h2>
+        <p class="lead center" data-reveal>
+          No siempre alcanza con aprender a usar IA. A veces necesitás un sistema que trabaje para tu negocio, y de eso me encargo.
         </p>
-        <p class="section-text">
-          Trabajo con empresas y emprendedores de toda LATAM. Desarrollé apps para la <strong>Fundación FIEL</strong>, la <strong>Policía de Salta</strong> y decenas de negocios en Argentina.
+        <p class="body-text center" data-reveal>
+          Cada app nació de un problema real. No vendo plantillas: analizo tu caso y desarrollo exactamente lo que necesitás.
         </p>
-        <ul class="chip-list">
-          <li>Agentes de IA</li>
-          <li>Automatizaciones</li>
-          <li>Apps con IA</li>
-        </ul>
-      </div>
-    </div>
-  </section>
 
-
-
-  <!-- ==================== APPS CON IA A MEDIDA ==================== -->
-  <section id="apps" class="section">
-    <div class="container">
-      <p class="section-eyebrow center">APPS CON IA A MEDIDA</p>
-      <h2 class="section-title center">¿Tu negocio necesita una solución concreta? <span class="glow-text">La construyo para vos.</span></h2>
-      <p class="section-lead center">No siempre alcanza con aprender a usar IA — a veces necesitás un sistema que trabaje para tu negocio las 24 horas. Yo lo diseño y lo desarrollo.</p>
-      <p class="section-text center">Cada app que construí nació de un problema real. No vendo templates — analizo tu caso y construyo exactamente lo que necesitás.</p>
-
-      <!-- Modelos de pago -->
-      <div class="grid grid-2 payment-grid">
-        <div class="glass-card payment-card">
-          <div class="service-icon"><i class="ti ti-bolt"></i></div>
-          <h3>Pago único</h3>
-          <p>Para apps y herramientas internas sin mantenimiento continuo.</p>
-        </div>
-        <div class="glass-card payment-card">
-          <div class="service-icon"><i class="ti ti-refresh"></i></div>
-          <h3>Mensualidad</h3>
-          <p>Para sistemas que requieren actualizaciones, soporte o mejoras constantes.</p>
-        </div>
-      </div>
-
-      <!-- Portfolio reorientado al problema resuelto -->
-      <h3 class="subsection-title">Proyectos que <span class="glow-text">resolví</span></h3>
-      <div class="grid grid-3 portfolio-grid">
-
-        <!-- 1. Clickangles -->
-        <article class="glass-card project-card featured">
-          <div class="project-badge">⭐ Destacado</div>
-          <div class="project-thumb">
-            <div class="thumb-placeholder">Beta disponible</div>
-          </div>
-          <div class="project-body">
-            <div class="project-tags"><span>SaaS</span><span>YouTube</span><span>IA</span></div>
-            <h3>Clickangles</h3>
-            <p>Los creadores de contenido perdían horas diseñando thumbnails. Clickangles los genera con IA en segundos.</p>
-            <div class="project-stack"><b>Stack:</b> React · Claude API · Vercel</div>
-            <div class="project-actions">
-              <a href="https://landing.sistemaniki.com/" target="_blank" rel="noopener" class="btn btn-sm btn-primary">Visitar app</a>
-              <button class="btn btn-sm btn-ghost" data-loom="LOOM-CLICKANGLES">Ver demo</button>
-            </div>
-          </div>
-        </article>
-
-        <!-- 2. Luna -->
-        <article class="glass-card project-card">
-          <div class="project-thumb project-thumb--video">
-            <div class="loom-facade" data-src="https://www.loom.com/embed/5eeee04618e54b5c9e99341e3de5e9d4?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" role="button" tabindex="0" aria-label="Reproducir demo: Luna — Agente IA">
-              <svg class="vid-play-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="39" stroke="white" stroke-opacity="0.3" stroke-width="2"/><circle cx="40" cy="40" r="39" fill="white" fill-opacity="0.08"/><polygon points="32,24 60,40 32,56" fill="white"/></svg>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-tags"><span>Agente IA</span><span>Voz</span><span>Demo</span></div>
-            <h3>Luna — Agente IA</h3>
-            <p>Una cosmética atendía reservas por WhatsApp manualmente. Luna las agenda sola, con voz, las 24 horas.</p>
-          </div>
-        </article>
-
-        <!-- 3. Aula Virtual FIEL -->
-        <article class="glass-card project-card">
-          <div class="project-thumb project-thumb--video">
-            <div class="loom-facade" data-src="https://www.loom.com/embed/c15c88543ce643698965d30ea5ff19d0?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" role="button" tabindex="0" aria-label="Reproducir demo: Aula Virtual FIEL">
-              <svg class="vid-play-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="39" stroke="white" stroke-opacity="0.3" stroke-width="2"/><circle cx="40" cy="40" r="39" fill="white" fill-opacity="0.08"/><polygon points="32,24 60,40 32,56" fill="white"/></svg>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-tags"><span>Plataforma</span><span>Educación</span><span>Cliente real</span></div>
-            <h3>Aula Virtual FIEL</h3>
-            <p>La Fundación FIEL necesitaba gestionar cursos y alumnos online. Hoy tienen su propia plataforma educativa en uso real.</p>
-            <div class="project-actions">
-              <span class="status-pill">En uso real</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 4. Certificados Masivos -->
-        <article class="glass-card project-card">
-          <div class="project-thumb project-thumb--video">
-            <div class="loom-facade" data-src="https://www.loom.com/embed/0c13f32e8a894d979f479a3d4357f287?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" role="button" tabindex="0" aria-label="Reproducir demo: App de Certificados Masivos">
-              <svg class="vid-play-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="39" stroke="white" stroke-opacity="0.3" stroke-width="2"/><circle cx="40" cy="40" r="39" fill="white" fill-opacity="0.08"/><polygon points="32,24 60,40 32,56" fill="white"/></svg>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-tags"><span>Automatización</span><span>Cliente real</span></div>
-            <h3>App de Certificados Masivos</h3>
-            <p>Antes se generaban certificados uno por uno en Canva. Ahora se generan todos en lote con un solo clic.</p>
-          </div>
-        </article>
-
-        <!-- 5. Super Profesor IA -->
-        <article class="glass-card project-card">
-          <div class="project-thumb project-thumb--video">
-            <div class="loom-facade" data-src="https://www.loom.com/embed/4d34dcf10eca4a1490cf5cce7823b178?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" role="button" tabindex="0" aria-label="Reproducir demo: Super Profesor IA">
-              <svg class="vid-play-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="39" stroke="white" stroke-opacity="0.3" stroke-width="2"/><circle cx="40" cy="40" r="39" fill="white" fill-opacity="0.08"/><polygon points="32,24 60,40 32,56" fill="white"/></svg>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-tags"><span>Eventos en vivo</span><span>Juego</span><span>Gemini</span></div>
-            <h3>Super Profesor IA</h3>
-            <p>Los seminarios necesitaban una dinámica interactiva. Este agente conduce un juego en vivo entre el público durante los eventos.</p>
-          </div>
-        </article>
-
-        <!-- 6. Filtrador de Repuestos PRO -->
-        <article class="glass-card project-card">
-          <div class="project-thumb project-thumb--video">
-            <div class="loom-facade" data-src="https://www.loom.com/embed/5cb64bdb77894683aec5765529b500d2?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" role="button" tabindex="0" aria-label="Reproducir demo: Filtrador de Repuestos PRO">
-              <svg class="vid-play-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="39" stroke="white" stroke-opacity="0.3" stroke-width="2"/><circle cx="40" cy="40" r="39" fill="white" fill-opacity="0.08"/><polygon points="32,24 60,40 32,56" fill="white"/></svg>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-tags"><span>Automatización</span><span>Excel</span></div>
-            <h3>Filtrador de Repuestos PRO</h3>
-            <p>Una empresa filtraba listas de más de 33.000 repuestos a mano. Ahora es un clic y el resultado está listo.</p>
-            <div class="project-actions">
-              <span class="status-pill">En uso real</span>
-            </div>
-          </div>
-        </article>
-
-      </div>
-
-      <div class="section-cta">
-        <a href="https://wa.me/5493876855489" target="_blank" rel="noopener" class="btn btn-whatsapp">
-          💬 Contame qué necesita tu negocio — te respondo con una propuesta
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== CTA FINAL ==================== -->
-  <section id="cta-final" class="section cta-final-section">
-    <div class="container">
-      <div class="glass-card cta-final-card">
-        <h2 class="cta-final-title">¿Listo para empezar?</h2>
-        <p class="cta-final-sub">Contame qué necesitás y te propongo el formato ideal para vos. Sin compromiso.</p>
-        <a href="https://wa.me/5493876855489" target="_blank" rel="noopener" class="btn btn-whatsapp btn-cta-final">
-          💬 Escribime al WhatsApp ahora
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== SEMINARIOS ==================== -->
-  <section id="seminarios" class="section">
-    <div class="container">
-      <p class="section-eyebrow center">EDUCACIÓN & SEMINARIOS</p>
-      <h2 class="section-title center">Además de construir software, <span class="glow-text">formo equipos en IA</span></h2>
-      <p class="section-lead center">
-        Doy seminarios presenciales en Salta y capacitaciones virtuales para empresas, equipos y organizaciones de toda Argentina.
-        Diseño el contenido a medida para cada organización — con demos en vivo de mis propias apps y las capacidades más potentes de la IA actual.
-      </p>
-
-      <!-- Carrusel fila 1 — izquierda -->
-      <div class="carousel-row">
-        <div class="carousel-track carousel-track--left">
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/20260406_193657.jpg" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/20260406_205835.jpg" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/20260406_211615.jpg" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/20260406_213135.jpg" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/20260406_213156.jpg" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/IMG_20260508_153916529_MFNR.jpg" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/IMG_20260508_154003552_NV.jpg" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/Captura%20de%20pantalla%202026-05-27%20014345.png" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/Captura%20de%20pantalla%202026-05-27%20014419.png" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/Captura%20de%20pantalla%202026-05-27%20014556.png" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/Captura%20de%20pantalla%202026-05-27%20014645.png" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/Captura%20de%20pantalla%202026-05-27%20014831.png" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/Captura%20de%20pantalla%202026-05-27%20014907.png" alt="Seminario IA Salta" /></div></div>
-        </div>
-      </div>
-
-      <!-- Carrusel fila 2 — derecha -->
-      <div class="carousel-row" style="margin-top:1.25rem;">
-        <div class="carousel-track carousel-track--right">
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/20260406_213441.jpg" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/IMG_20260424_163247733.jpg" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/IMG_20260424_163249993.jpg" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/IMG_20260424_163252080.jpg" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/Captura%20de%20pantalla%202026-05-27%20015029.png" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/Captura%20de%20pantalla%202026-05-27%20015115.png" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/Captura%20de%20pantalla%202026-05-27%20015221.png" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/Captura%20de%20pantalla%202026-05-27%20015319.png" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/Captura%20de%20pantalla%202026-05-27%20015358.png" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/Captura%20de%20pantalla%202026-05-27%20015608.png" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/Captura%20de%20pantalla%202026-05-27%20015800.png" alt="Seminario IA Salta" /></div></div>
-          <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/Captura%20de%20pantalla%202026-05-27%20015818.png" alt="Seminario IA Salta" /></div></div>
-        </div>
-      </div>
-
-      <!-- Bloque exclusivo Policía -->
-      <div class="police-seminar-block">
-        <div class="police-seminar-header">
-          <span class="police-badge">⭐ SEMINARIO EXCLUSIVO</span>
-          <h3 class="police-title">Policía de <span class="glow-text">Salta</span></h3>
-          <p class="police-subtitle">Capacitación en Inteligencia Artificial para fuerzas de seguridad.</p>
+        <div class="pay">
+          <article class="glass tilt" data-reveal>
+            <span class="pay-ico"><svg class="ico"><use href="#i-bolt"/></svg></span>
+            <h3>Pago único</h3>
+            <p>Para apps y herramientas internas sin mantenimiento continuo.</p>
+          </article>
+          <article class="glass tilt" data-reveal>
+            <span class="pay-ico"><svg class="ico"><use href="#i-cycle"/></svg></span>
+            <h3>Mensualidad</h3>
+            <p>Para sistemas que requieren actualizaciones, soporte o mejoras constantes.</p>
+          </article>
         </div>
 
-        <!-- Fila 1 — izquierda -->
-        <div class="carousel-row">
-          <div class="carousel-track carousel-track--left">
-            <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/IMG-20260409-WA0003.jpg" alt="Seminario IA Policía Salta" /></div></div>
-            <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/IMG-20260409-WA0004.jpg" alt="Seminario IA Policía Salta" /></div></div>
-            <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/IMG-20260409-WA0006.jpg" alt="Seminario IA Policía Salta" /></div></div>
-            <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/IMG-20260409-WA0008.jpg" alt="Seminario IA Policía Salta" /></div></div>
-            <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/IMG-20260409-WA0010.jpg" alt="Seminario IA Policía Salta" /></div></div>
-          </div>
+        <h3 class="h3 center" data-reveal>Lo que ya <em>funciona</em></h3>
+
+        <div class="projects">
+          <article class="glass tilt p-card p-lg" data-reveal>
+            <button class="p-media" type="button" data-loom="c15c88543ce643698965d30ea5ff19d0" data-title="Aula Virtual FIEL" aria-label="Ver la demo: Aula Virtual FIEL">
+              <img src="public/assets/opt/demo-aula.webp" width="960" height="720" alt="" loading="lazy" decoding="async" />
+              <span class="play"><svg class="ico"><use href="#i-arrow"/></svg></span>
+            </button>
+            <div class="p-body">
+              <div class="p-tags"><span>Plataforma</span><span>Educación</span></div>
+              <h4>Aula Virtual FIEL</h4>
+              <p>La Fundación FIEL necesitaba gestionar cursos y alumnos online. Hoy tiene su propia plataforma educativa.</p>
+              <span class="pill">En uso real</span>
+            </div>
+          </article>
+
+          <article class="glass tilt p-card p-sm" data-reveal>
+            <button class="p-media" type="button" data-loom="5eeee04618e54b5c9e99341e3de5e9d4" data-title="Luna, agente de IA" aria-label="Ver la demo: Luna, agente de IA">
+              <img src="public/assets/opt/demo-luna.webp" width="960" height="720" alt="" loading="lazy" decoding="async" />
+              <span class="play"><svg class="ico"><use href="#i-arrow"/></svg></span>
+            </button>
+            <div class="p-body">
+              <div class="p-tags"><span>Agente IA</span><span>Voz</span><span>Demo</span></div>
+              <h4>Luna, agente de IA</h4>
+              <p>Una cosmética atendía reservas por WhatsApp manualmente. Luna las agenda sola, con voz, las 24 horas.</p>
+            </div>
+          </article>
+
+          <article class="glass tilt p-card p-sm" data-reveal>
+            <button class="p-media" type="button" data-loom="0c13f32e8a894d979f479a3d4357f287" data-title="App de Certificados Masivos" aria-label="Ver la demo: App de Certificados Masivos">
+              <img src="public/assets/opt/demo-certificados.webp" width="960" height="720" alt="" loading="lazy" decoding="async" />
+              <span class="play"><svg class="ico"><use href="#i-arrow"/></svg></span>
+            </button>
+            <div class="p-body">
+              <div class="p-tags"><span>Automatización</span><span>Certificados</span></div>
+              <h4>App de Certificados Masivos</h4>
+              <p>Antes se generaban certificados uno por uno en Canva. Ahora se arman todos juntos, en lote.</p>
+            </div>
+          </article>
+
+          <article class="glass tilt p-card p-sm" data-reveal>
+            <button class="p-media" type="button" data-loom="4d34dcf10eca4a1490cf5cce7823b178" data-title="Super Profesor IA" aria-label="Ver la demo: Super Profesor IA">
+              <img src="public/assets/opt/demo-profesor.webp" width="960" height="720" alt="" loading="lazy" decoding="async" />
+              <span class="play"><svg class="ico"><use href="#i-arrow"/></svg></span>
+            </button>
+            <div class="p-body">
+              <div class="p-tags"><span>Eventos</span><span>Juego</span><span>Gemini</span></div>
+              <h4>Super Profesor IA</h4>
+              <p>Los seminarios necesitaban una dinámica interactiva. Este agente conduce un juego en vivo entre el público durante los eventos.</p>
+            </div>
+          </article>
+
+          <article class="glass tilt p-card p-sm" data-reveal>
+            <button class="p-media" type="button" data-loom="5cb64bdb77894683aec5765529b500d2" data-title="Filtrador de Repuestos PRO" aria-label="Ver la demo: Filtrador de Repuestos PRO">
+              <img src="public/assets/opt/demo-repuestos.webp" width="960" height="720" alt="" loading="lazy" decoding="async" />
+              <span class="play"><svg class="ico"><use href="#i-arrow"/></svg></span>
+            </button>
+            <div class="p-body">
+              <div class="p-tags"><span>Excel</span><span>Listas de precios</span></div>
+              <h4>Filtrador de Repuestos PRO</h4>
+              <p>Una empresa filtraba a mano listas de más de 33.000 repuestos. Hoy el resultado sale en un clic.</p>
+              <span class="pill">En uso real</span>
+            </div>
+          </article>
         </div>
 
-        <!-- Fila 2 — derecha -->
-        <div class="carousel-row" style="margin-top:1.25rem;">
-          <div class="carousel-track carousel-track--right">
-            <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/IMG-20260409-WA0019.jpg" alt="Seminario IA Policía Salta" /></div></div>
-            <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/IMG-20260409-WA0021.jpg" alt="Seminario IA Policía Salta" /></div></div>
-            <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/IMG-20260409-WA0028.jpg" alt="Seminario IA Policía Salta" /></div></div>
-            <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/IMG-20260409-WA0029.jpg" alt="Seminario IA Policía Salta" /></div></div>
-            <div class="carousel-slide"><div class="seminar-photo"><img src="public/assets/misc/1775752239798.png" alt="Seminario IA Policía Salta" /></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="seminar-cta glass-card">
-        <div>
-          <h3>¿QUERÉS UN SEMINARIO O UNA CONSULTORÍA PRESENCIAL/VIRTUAL PARA TU ORGANIZACIÓN?</h3>
-          <p>Diseño contenidos a medida para empresas, fundaciones, universidades y equipos.</p>
-        </div>
-        <a href="https://wa.me/5493876855489" target="_blank" rel="noopener" class="btn btn-primary" style="background:#25D366;border-color:#25D366;color:#fff;">CONTRATAR CONSULTORÍA</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== CONTACTO ==================== -->
-  <section id="contacto" class="section">
-    <div class="container">
-      <p class="section-eyebrow center">HABLEMOS</p>
-      <h2 class="section-title center">Contacto</h2>
-      <p class="section-lead center">¿Tenés un proyecto, una idea o querés contratarme? Escribime.</p>
-
-      <div class="contact-cards" style="gap:1.5rem;justify-content:center;flex-wrap:wrap;">
-        <div class="glass-card contact-direct" style="flex:1;max-width:380px;">
-          <h3>WhatsApp</h3>
-          <p class="contact-sub">Respondo rápido, todos los días.</p>
-          <a href="https://wa.me/5493876855489" target="_blank" rel="noopener" class="btn btn-primary btn-block" style="background:#25D366;border-color:#25D366;color:#fff;font-size:1.1rem;padding:1rem 2rem;text-align:center;display:block;margin-top:1rem;">
-            💬 Escribime por WhatsApp
+        <div class="center sec-cta" data-reveal>
+          <a href="https://wa.me/5493876855489" target="_blank" rel="noopener" class="btn btn--red btn--lg magnet">
+            <svg class="ico"><use href="#i-wa"/></svg>Contame tu caso y te respondo con una propuesta
           </a>
         </div>
+      </div>
+    </section>
 
-        <div class="glass-card contact-direct" style="flex:1;max-width:380px;">
-          <h3>Email</h3>
-          <p class="contact-sub">Respondo rápido, todos los días.</p>
-          <a href="mailto:lopezaxel@sistemaniki.com" class="contact-link" style="margin-top:1rem;">
-            <span class="cl-icon">✉</span>
+    <!-- ==================== SEMINARIOS (rojo) ==================== -->
+    <section id="seminarios" class="sec sec--red slant">
+      <div class="red-grain" aria-hidden="true"></div>
+      <div class="wrap">
+        <p class="eyebrow eyebrow--light center" data-reveal>Educación y seminarios</p>
+        <h2 class="h2 h2--light center" data-reveal>Además de programar, <em>formo equipos en IA</em></h2>
+        <p class="lead lead--light center" data-reveal>
+          Doy seminarios presenciales en Salta y capacitaciones virtuales para empresas, equipos y organizaciones de toda Argentina.
+          Diseño el contenido a medida para cada organización, con demos en vivo de mis propias apps y las capacidades más potentes de la IA actual.
+        </p>
+      </div>
+
+      <div class="reel" data-reveal>
+        <div class="reel-track reel-track--left">
+          <figure class="ph"><img src="public/assets/opt/captura-de-pantalla-2026-05-27-015608.webp" width="640" height="480" alt="Axel Lopez con micrófono entre el público en un seminario de IA" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/captura-de-pantalla-2026-05-27-014831.webp" width="640" height="480" alt="Público atento durante un seminario de IA en Salta" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/captura-de-pantalla-2026-05-27-014419.webp" width="640" height="480" alt="Debate en el escenario durante un seminario de IA" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/20260406205835.webp" width="640" height="480" alt="Axel Lopez presentando frente a una pantalla sobre agentes de IA" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/img20260424163247733.webp" width="640" height="480" alt="Dinámica del Super Profesor IA con estudiantes" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/captura-de-pantalla-2026-05-27-014556.webp" width="640" height="480" alt="Auditorio lleno en un seminario de IA" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/captura-de-pantalla-2026-05-27-015358.webp" width="640" height="480" alt="Asistentes en un seminario de IA en Salta" loading="lazy" decoding="async" /></figure>
+        </div>
+      </div>
+      <div class="reel reel--2" data-reveal>
+        <div class="reel-track reel-track--right">
+          <figure class="ph"><img src="public/assets/opt/captura-de-pantalla-2026-05-27-014645.webp" width="640" height="480" alt="Axel Lopez explicando ante el público" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/20260406213135.webp" width="640" height="480" alt="Entrega de reconocimientos al cierre de un seminario" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/20260406193657.webp" width="640" height="480" alt="Seminario de IA en un salón de Salta" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/img20260424163249993.webp" width="640" height="480" alt="Estudiantes participando del juego Super Profesor IA" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/captura-de-pantalla-2026-05-27-014345.webp" width="640" height="480" alt="Charla sobre uso personal y comercial de la IA" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/captura-de-pantalla-2026-05-27-015319.webp" width="640" height="480" alt="Axel Lopez presentando con proyector en un seminario" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/20260406211615.webp" width="640" height="480" alt="Axel Lopez en una charla sobre IA" loading="lazy" decoding="async" /></figure>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="police-head" data-reveal>
+          <span class="badge-solid"><svg class="ico"><use href="#i-star"/></svg>Seminario exclusivo</span>
+          <h3 class="h2 h2--light">Policía <em>de Salta</em></h3>
+          <p class="lead lead--light center">Capacitación en Inteligencia Artificial para fuerzas de seguridad.</p>
+        </div>
+      </div>
+
+      <div class="reel" data-reveal>
+        <div class="reel-track reel-track--left">
+          <figure class="ph ph--wide"><img src="public/assets/opt/1775752239798.webp" width="800" height="500" alt="Afiche del seminario Consultoría de IA para la Policía" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/img-20260409-wa0004.webp" width="640" height="480" alt="Axel Lopez en el escenario durante la capacitación a la Policía de Salta" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/img-20260409-wa0006.webp" width="640" height="480" alt="Axel Lopez de pie frente a la pantalla en el teatro" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/img-20260409-wa0008.webp" width="640" height="480" alt="Axel Lopez en el escenario con el afiche proyectado" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/img-20260409-wa0010.webp" width="640" height="480" alt="Capacitación en IA para la Policía de Salta" loading="lazy" decoding="async" /></figure>
+        </div>
+      </div>
+      <div class="reel reel--2" data-reveal>
+        <div class="reel-track reel-track--right">
+          <figure class="ph"><img src="public/assets/opt/img-20260409-wa0019.webp" width="640" height="480" alt="Presentación del seminario con el afiche proyectado" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/img-20260409-wa0021.webp" width="640" height="480" alt="Axel Lopez presentando ante el auditorio" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/img-20260409-wa0028.webp" width="640" height="480" alt="Axel Lopez en el escenario durante la capacitación" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/img-20260409-wa0029.webp" width="640" height="480" alt="Auditorio durante la capacitación en IA" loading="lazy" decoding="async" /></figure>
+          <figure class="ph"><img src="public/assets/opt/img-20260409-wa0003.webp" width="640" height="480" alt="Axel Lopez frente al público en el teatro" loading="lazy" decoding="async" /></figure>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="seminar-cta" data-reveal>
+          <div>
+            <h3>¿Querés un seminario o una consultoría para tu organización?</h3>
+            <p>Presencial o virtual. Escribime y lo armamos.</p>
+          </div>
+          <a href="https://wa.me/5493876855489" target="_blank" rel="noopener" class="btn btn--ink btn--lg magnet">Contratar consultoría<svg class="ico"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTACTO (claro) ==================== -->
+    <section id="contacto" class="sec sec--bone slant-top contact">
+      <div class="wrap">
+        <p class="eyebrow center" data-reveal>Tenés un proyecto, una idea o querés contratarme</p>
+        <h2 class="contact-title" data-reveal>Hablemos<span>.</span></h2>
+
+        <div class="contact-cards">
+          <a class="c-card c-card--wa magnet" href="https://wa.me/5493876855489" target="_blank" rel="noopener" data-reveal>
+            <svg class="ico ico--xl"><use href="#i-wa"/></svg>
             <div>
-              <span class="cl-label">Email</span>
-              <span class="cl-value">lopezaxel@sistemaniki.com</span>
+              <span class="c-label">WhatsApp</span>
+              <span class="c-value">Respondo todos los días</span>
             </div>
+            <svg class="ico c-arrow"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="c-card c-card--mail magnet" href="mailto:lopezaxelalejandro@gmail.com" data-reveal>
+            <svg class="ico ico--xl"><use href="#i-mail"/></svg>
+            <div>
+              <span class="c-label">Email</span>
+              <span class="c-value">lopezaxelalejandro@gmail.com</span>
+            </div>
+            <svg class="ico c-arrow"><use href="#i-arrow"/></svg>
           </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+  </main>
 
   <!-- ==================== FOOTER ==================== -->
   <footer class="footer">
-    <div class="container footer-inner">
+    <div class="wrap footer-inner">
       <div>
-        <a href="#hero" class="nav-logo">
-          <span class="logo-mark">A</span>
-          <span class="logo-text">SISTEMA<strong>NIKI</strong></span>
+        <a href="#hero" class="nav-logo" aria-label="NIKI Software, volver arriba">
+          <span class="logo-text"><strong>NIKI</strong> SOFTWARE</span>
         </a>
-        <p class="footer-tag">Construyendo el futuro con IA · desde Salta, Argentina.</p>
+        <p class="footer-tag">Construyendo el futuro con IA.</p>
         <div class="footer-social">
-          <a href="https://www.instagram.com/axelopez.niki?igsh=Mmd2cDlscHMyMjho" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram de Axel Lopez">
-            <i class="ti ti-brand-instagram"></i>
-          </a>
-          <a href="https://wa.me/5493876855489" target="_blank" rel="noopener" class="footer-social-link" aria-label="WhatsApp de Axel Lopez">
-            <i class="ti ti-brand-whatsapp"></i>
-          </a>
-          <a href="mailto:lopezaxel@sistemaniki.com" class="footer-social-link" aria-label="Email de Axel Lopez">
-            <i class="ti ti-mail"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/axel-lopez-05b138299" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn de Axel Lopez">
-            <i class="ti ti-brand-linkedin"></i>
-          </a>
+          <a href="https://www.instagram.com/axelopez.niki" target="_blank" rel="noopener" aria-label="Instagram de Axel Lopez"><svg class="ico"><use href="#i-ig"/></svg></a>
+          <a href="https://wa.me/5493876855489" target="_blank" rel="noopener" aria-label="WhatsApp de Axel Lopez"><svg class="ico"><use href="#i-wa"/></svg></a>
+          <a href="mailto:lopezaxelalejandro@gmail.com" aria-label="Email de Axel Lopez"><svg class="ico"><use href="#i-mail"/></svg></a>
+          <a href="https://www.linkedin.com/in/axel-lopez-05b138299" target="_blank" rel="noopener" aria-label="LinkedIn de Axel Lopez"><svg class="ico"><use href="#i-in"/></svg></a>
         </div>
       </div>
 
-      <nav class="footer-links">
+      <nav class="footer-links" aria-label="Pie de página">
         <a href="#sobre-mi">Sobre mí</a>
         <a href="#apps">Apps a medida</a>
         <a href="#seminarios">Seminarios</a>
         <a href="#contacto">Contacto</a>
       </nav>
 
-      <p class="footer-copy">© <span id="year">2026</span> Axel Lopez · sistemaniki.com</p>
+      <p class="footer-copy">© <span id="year">2026</span> Axel Lopez · NIKI Software</p>
     </div>
   </footer>
+
+  <!-- Modal de video (demos) -->
+  <dialog class="video-modal" id="videoModal" aria-label="Demo del proyecto">
+    <div class="vm-head">
+      <h3 id="vmTitle"></h3>
+      <button type="button" class="vm-close" id="vmClose" aria-label="Cerrar video"><svg class="ico"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="vm-frame" id="vmFrame"></div>
+  </dialog>
 
   <script src="script.js"></script>
 </body>
