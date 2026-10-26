@@ -78,6 +78,21 @@
     revealEls.forEach(el => io.observe(el));
   }
 
+  /* Escenas con secuencia propia (sin data-reveal: un transform en el contenedor rompe el mix-blend). */
+  const playEls = $$('[data-play]');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    playEls.forEach(el => el.classList.add('in'));
+  } else {
+    const po = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        // Entra (>= 25 % visible): arranca la secuencia. Sale por completo: se rearma para la próxima vez.
+        if (e.intersectionRatio >= 0.25) e.target.classList.add('in');
+        else if (!e.isIntersecting) e.target.classList.remove('in');
+      });
+    }, { threshold: [0, 0.25] });
+    playEls.forEach(el => po.observe(el));
+  }
+
   /* -------------------- CONTADORES -------------------- */
   const counters = $$('[data-count]');
   const runCounter = el => {

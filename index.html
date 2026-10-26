@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=14" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 
   <script type="application/ld+json">
@@ -158,50 +158,101 @@
     <!-- ==================== POR QUÉ AHORA (oscuro) ==================== -->
     <section id="por-que-ia" class="sec sec--ink slant why">
       <div class="why-glow" aria-hidden="true"></div>
-      <div class="wrap">
-        <p class="eyebrow center" data-reveal>Por qué ahora</p>
-        <h2 class="h2 center" data-reveal>Un negocio con IA <em>trabaja con ventaja</em></h2>
-        <p class="lead center" data-reveal>
-          Las planillas sueltas, los mensajes sin responder y las tareas que se repiten todos los días le quitan horas a tu equipo. La IA y las automatizaciones devuelven esas horas a tu negocio.
-        </p>
-      </div>
+      <div class="wrap why-grid">
 
-      <div class="why-art" data-reveal>
-        <!-- Imagen generada con IA (fondo negro puro: se mezcla con la sección). Los textos van en HTML. -->
-        <div class="why-img">
-          <img class="why-pic" src="public/assets/opt/porque-ia-2400.webp"
-               srcset="public/assets/opt/porque-ia-1400.webp 1400w, public/assets/opt/porque-ia-2400.webp 2400w"
-               sizes="(max-width: 860px) 178vw, 1360px" width="2400" height="1340"
-               alt="Pila de capas de vidrio con una capa roja brillante en el medio. Cubos grises desordenados a la izquierda se ordenan en hilos de luz roja y una flecha roja sube hacia la derecha." loading="lazy" decoding="async" />
-          <span class="why-pulse" aria-hidden="true"></span>
+        <!-- Izquierda: la IA al centro y las herramientas del negocio alrededor. Dos imágenes (apagada / encendida) con el mismo encuadre:
+             al entrar en pantalla la encendida se revela desde el chip hacia afuera y los hilos se dibujan en SVG.
+             .why-art no lleva data-reveal a propósito: un transform/opacity en el contenedor rompe el mix-blend del fondo negro. -->
+        <div class="why-art" data-play>
+          <div class="why-stage">
+            <img class="why-off" src="public/assets/opt/hub-ia-apagado-1600.webp"
+                 srcset="public/assets/opt/hub-ia-apagado-1000.webp 1000w, public/assets/opt/hub-ia-apagado-1600.webp 1600w"
+                 sizes="(max-width: 900px) 100vw, 720px" width="1600" height="1600"
+                 alt="Un chip de inteligencia artificial en el centro rodeado por seis paneles de vidrio: chat con clientes, mensajes y reservas, planilla de ventas, tienda online, caja registradora y control de stock." loading="lazy" decoding="async" />
+            <img class="why-on" src="public/assets/opt/hub-ia-encendido-1600.webp"
+                 srcset="public/assets/opt/hub-ia-encendido-1000.webp 1000w, public/assets/opt/hub-ia-encendido-1600.webp 1600w"
+                 sizes="(max-width: 900px) 100vw, 720px" width="1600" height="1600"
+                 alt="" aria-hidden="true" loading="lazy" decoding="async" />
+            <span class="why-flash" aria-hidden="true"></span>
+            <span class="why-logo" aria-hidden="true"><i class="why-logo__ripple"></i><i class="why-logo__ripple" style="--d:1.6s"></i><i class="why-logo__ring"></i><i class="why-logo__plate"></i><svg class="why-logo__spark" viewBox="0 0 24 24"><path d="M12 0c.9 6.4 4.6 10.1 12 12-7.4 1.9-11.1 5.6-12 12-.9-6.4-4.6-10.1-12-12C7.4 10.1 11.1 6.4 12 0Z"/></svg><b>IA</b></span>
+            <svg class="why-links" viewBox="0 0 1932 1932" aria-hidden="true" focusable="false">
+              <g class="why-base">
+                <path d="M968 842 C968 800 955 770 950 742"/>
+                <path d="M700 968 C675 992 650 985 625 935"/>
+                <path d="M1243 968 C1275 992 1300 985 1290 940"/>
+                <path d="M850 1105 C815 1140 795 1170 765 1200"/>
+                <path d="M1090 1105 C1140 1140 1180 1170 1235 1190"/>
+                <path d="M968 1185 C975 1260 1000 1330 1010 1385"/>
+              </g>
+              <g class="why-draw">
+                <path pathLength="1" style="--n:0" d="M968 842 C968 800 955 770 950 742"/>
+                <path pathLength="1" style="--n:1" d="M700 968 C675 992 650 985 625 935"/>
+                <path pathLength="1" style="--n:2" d="M1243 968 C1275 992 1300 985 1290 940"/>
+                <path pathLength="1" style="--n:3" d="M850 1105 C815 1140 795 1170 765 1200"/>
+                <path pathLength="1" style="--n:4" d="M1090 1105 C1140 1140 1180 1170 1235 1190"/>
+                <path pathLength="1" style="--n:5" d="M968 1185 C975 1260 1000 1330 1010 1385"/>
+              </g>
+              <g class="why-pulse">
+                <path pathLength="1" style="--n:0" d="M968 842 C968 800 955 770 950 742"/>
+                <path pathLength="1" style="--n:1" d="M700 968 C675 992 650 985 625 935"/>
+                <path pathLength="1" style="--n:2" d="M1243 968 C1275 992 1300 985 1290 940"/>
+                <path pathLength="1" style="--n:3" d="M850 1105 C815 1140 795 1170 765 1200"/>
+                <path pathLength="1" style="--n:4" d="M1090 1105 C1140 1140 1180 1170 1235 1190"/>
+                <path pathLength="1" style="--n:5" d="M968 1185 C975 1260 1000 1330 1010 1385"/>
+              </g>
+              <g class="why-nodes">
+                <circle style="--n:0" cx="950" cy="742" r="9"/>
+                <circle style="--n:1" cx="625" cy="935" r="9"/>
+                <circle style="--n:2" cx="1290" cy="940" r="9"/>
+                <circle style="--n:3" cx="765" cy="1200" r="9"/>
+                <circle style="--n:4" cx="1235" cy="1190" r="9"/>
+                <circle style="--n:5" cx="1010" cy="1385" r="9"/>
+              </g>
+            </svg>
+            <span class="why-tag" style="--n:0;left:49.4%;top:9.2%">Chat con clientes</span>
+            <span class="why-tag" style="--n:1;left:19.5%;top:20.5%">Mensajes y reservas</span>
+            <span class="why-tag" style="--n:2;left:79.2%;top:19.5%">Planilla de ventas</span>
+            <span class="why-tag" style="--n:3;left:22%;top:85%">Tienda online</span>
+            <span class="why-tag" style="--n:4;left:77.6%;top:85%">Caja y cobros</span>
+            <span class="why-tag" style="--n:5;left:52.8%;top:92%">Control de stock</span>
+          </div>
         </div>
 
-        <p class="why-chip why-chip--before">Antes: planillas, mensajes y tareas a mano</p>
-        <p class="why-chip why-chip--after">Después: tu negocio con IA en cada capa</p>
+        <!-- Derecha: títulos y texto -->
+        <div class="why-head">
+          <p class="eyebrow" data-reveal>Por qué ahora</p>
+          <h2 class="h2 why-title" data-reveal>Un negocio con IA <em>trabaja con ventaja</em></h2>
+          <p class="lead" data-reveal>
+            Las planillas sueltas, los mensajes sin responder y las tareas que se repiten todos los días le quitan horas a tu equipo. La IA y las automatizaciones devuelven esas horas a tu negocio.
+          </p>
+        </div>
 
-        <div class="why-card why-card--1" style="--n:0">
-          <span class="why-ico"><svg class="ico"><use href="#i-bolt"/></svg></span>
-          <div><b>Menos trabajo manual</b><span>Las tareas repetitivas las toma el sistema.</span></div>
-        </div>
-        <div class="why-card why-card--2" style="--n:1">
-          <span class="why-ico"><svg class="ico"><use href="#i-bot"/></svg></span>
-          <div><b>Atención las 24 horas</b><span>Un agente responde cuando vos no podés.</span></div>
-        </div>
-        <div class="why-card why-card--3" style="--n:2">
-          <span class="why-bars" aria-hidden="true"><i style="--h:38%;--i:0s"></i><i style="--h:58%;--i:.25s"></i><i style="--h:76%;--i:.5s"></i><i style="--h:100%;--i:.75s"></i></span>
-          <div><b>Más tiempo para crecer</b><span>Las horas que recuperás las usás en vender.</span></div>
-        </div>
-        <div class="why-card why-card--4" style="--n:3">
-          <span class="why-ico"><svg class="ico"><use href="#i-db"/></svg></span>
-          <div><b>Decisiones con tus datos</b><span>Tu información ordenada en un solo lugar.</span></div>
-        </div>
-      </div>
+        <div class="why-body">
+          <ul class="why-list">
+            <li class="why-item" data-reveal style="--d:.05s">
+              <span class="why-ico"><svg class="ico"><use href="#i-bolt"/></svg></span>
+              <div><b>Menos trabajo manual</b><span>Las tareas repetitivas las toma el sistema.</span></div>
+            </li>
+            <li class="why-item" data-reveal style="--d:.15s">
+              <span class="why-ico"><svg class="ico"><use href="#i-bot"/></svg></span>
+              <div><b>Atención las 24 horas</b><span>Un agente responde cuando vos no podés.</span></div>
+            </li>
+            <li class="why-item" data-reveal style="--d:.25s">
+              <span class="why-bars" aria-hidden="true"><i style="--h:38%;--i:0s"></i><i style="--h:58%;--i:.25s"></i><i style="--h:76%;--i:.5s"></i><i style="--h:100%;--i:.75s"></i></span>
+              <div><b>Más tiempo para crecer</b><span>Las horas que recuperás las usás en vender.</span></div>
+            </li>
+            <li class="why-item" data-reveal style="--d:.35s">
+              <span class="why-ico"><svg class="ico"><use href="#i-db"/></svg></span>
+              <div><b>Decisiones con tus datos</b><span>Tu información ordenada en un solo lugar.</span></div>
+            </li>
+          </ul>
 
-      <div class="wrap">
-        <div class="why-cta" data-reveal>
-          <a href="https://wa.me/5493876855489?text=Hola%20Axel%2C%20vi%20tu%20p%C3%A1gina%20y%20quiero%20sumar%20IA%20a%20mi%20negocio.%20Mi%20negocio%20es%20___%20y%20me%20gustar%C3%ADa%20resolver%20___." target="_blank" rel="noopener" class="btn btn--red btn--lg magnet"><svg class="ico"><use href="#i-wa"/></svg>Quiero sumar IA a mi negocio</a>
-          <a href="#apps" class="btn btn--ghost btn--lg magnet">Ver lo que ya construí</a>
+          <div class="why-cta" data-reveal>
+            <a href="https://wa.me/5493876855489?text=Hola%20Axel%2C%20vi%20tu%20p%C3%A1gina%20y%20quiero%20sumar%20IA%20a%20mi%20negocio.%20Mi%20negocio%20es%20___%20y%20me%20gustar%C3%ADa%20resolver%20___." target="_blank" rel="noopener" class="btn btn--red btn--lg magnet"><svg class="ico"><use href="#i-wa"/></svg>Quiero sumar IA a mi negocio</a>
+            <a href="#apps" class="btn btn--ghost btn--lg magnet">Ver lo que ya construí</a>
+          </div>
         </div>
+
       </div>
     </section>
 
@@ -547,6 +598,6 @@
     <div class="vm-frame" id="vmFrame"></div>
   </dialog>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>
