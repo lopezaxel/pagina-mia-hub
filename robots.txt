@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://niki-software.vercel.app/sitemap.xml

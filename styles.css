@@ -3,6 +3,18 @@
    Sistema: negro / rojo / hueso, con cortes diagonales entre secciones.
    ========================================================================== */
 
+/* Fuentes propias (variables, subconjunto latin). Se precargan desde el HTML. */
+@font-face {
+  font-family: 'Big Shoulders Display'; font-style: normal; font-weight: 700 900; font-display: swap;
+  src: url('public/assets/fonts/big-shoulders-display.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url('public/assets/fonts/hanken-grotesk.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   --ink: #0b0707;
   --ink-2: #150d0d;
@@ -13,12 +25,14 @@
   --red: #e11d26;
   --red-hot: #ff3b2e;
   --red-deep: #8e0f14;
+  --red-text: #c8121c; /* rojo para texto chico sobre hueso: 5.1:1 (el --red da 4.2:1) */
   --text: #f3efe8;
   --text-dim: rgba(243, 239, 232, 0.68);
   --line: rgba(255, 255, 255, 0.12);
 
   --font-display: 'Big Shoulders Display', 'Arial Narrow', Impact, sans-serif;
-  --font-body: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Arial antes que system-ui: mide casi igual que Hanken (99.96 %), así el texto no se reacomoda al cargar la fuente propia. */
+  --font-body: 'Hanken Grotesk', Arial, 'Helvetica Neue', Helvetica, sans-serif;
 
   --max: 1240px;
   --gutter: clamp(20px, 4vw, 48px);
@@ -57,6 +71,9 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 
 :focus-visible { outline: 2px solid var(--red-hot); outline-offset: 3px; border-radius: 4px; }
 .sec--bone :focus-visible { outline-color: var(--paper-ink); }
+/* El botón del video llena el borde de una tarjeta con overflow:hidden: un outline hacia afuera quedaría recortado. */
+.p-media:focus-visible { outline-offset: -5px; border-radius: 0; outline-color: #fff; }
+.p-media:focus-visible::after { box-shadow: inset 0 0 0 5px var(--red-hot); } /* va en ::after porque la imagen taparía una sombra del propio botón */
 
 .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 .ico { width: 1.25em; height: 1.25em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
@@ -97,7 +114,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   font-size: 0.78rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--red-hot); margin-bottom: 1.1rem;
 }
-.sec--bone .eyebrow { color: var(--red); }
+.sec--bone .eyebrow { color: var(--red-text); }
 .eyebrow--light { color: rgba(255, 255, 255, 0.85) !important; }
 
 .lead { font-size: clamp(1.1rem, 1.6vw, 1.3rem); line-height: 1.55; max-width: 62ch; color: var(--text); }
@@ -213,9 +230,13 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 @keyframes sweep { 0% { transform: translateX(-120%) skewX(-12deg); } 55%, 100% { transform: translateX(290%) skewX(-12deg); } }
 .hero-title .line { display: block; overflow: hidden; padding-block: 0.04em; }
 .hero-title .line > span { display: block; }
+/* En escritorio cada línea del título es una sola línea. Con la tipografía de reemplazo (más ancha) se partían en dos,
+   el hero crecía 146 px y al cargar la fuente propia todo saltaba (CLS 0.25). Con alto fijo por línea no hay salto. */
+@media (min-width: 861px) { .hero-title .line > span { white-space: nowrap; } }
 .hero-title .line--red { color: var(--red-hot); }
 .hero-title .line--sub { font-size: 0.46em; line-height: 1.05; letter-spacing: 0.02em; margin-top: 0.5em; }
-.hero-lead { font-size: clamp(1.1rem, 1.7vw, 1.3rem); color: var(--text-dim); max-width: 52ch; }
+/* Ancho en em y no en ch: el ch cambia con la tipografía activa y partía el párrafo distinto antes y después de cargar la fuente (salto del hero). */
+.hero-lead { font-size: clamp(1.1rem, 1.7vw, 1.3rem); color: var(--text-dim); max-width: 29.4em; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2.2rem; }
 .hero-proof { display: flex; flex-wrap: wrap; gap: 0.6rem 1.6rem; margin-top: 2.6rem; font-size: 0.85rem; font-weight: 600; color: var(--text-dim); }
 .hero-proof li { display: flex; align-items: center; gap: 0.6rem; }
@@ -227,7 +248,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   transform: rotate(-1.6deg); background: var(--red); color: var(--ink);
   overflow: hidden; border-block: 3px solid var(--ink);
 }
-.band-track { display: flex; align-items: center; gap: 2rem; width: max-content; padding: 0.8rem 0; animation: band 32s linear infinite; }
+.band-track { display: flex; align-items: center; gap: 2rem; width: max-content; padding: 0.8rem 2rem 0.8rem 0; animation: band 32s linear infinite; }
 .band-track span { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.4rem, 2.8vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
 .band-track .ico { width: 1.1rem; height: 1.1rem; color: var(--ink); }
 @keyframes band { to { transform: translateX(-50%); } }
@@ -329,7 +350,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .level-num { position: absolute; right: 1.4rem; bottom: -1.6rem; z-index: 0; font-family: var(--font-display); font-weight: 900; font-size: clamp(8rem, 13vw, 11rem); line-height: 1; color: transparent; -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1); pointer-events: none; }
 /* El nivel 2 va en hueso: se lee como el escalón siguiente y no se mezcla con el nivel 1. */
 .level--2 { background: var(--bone); color: var(--paper-ink); border-color: var(--bone); }
-.level--2 .level-for { color: var(--red); }
+.level--2 .level-for { color: var(--red-text); }
 .level--2 p { color: rgba(23, 13, 13, 0.78); }
 .level--2 .level-num { -webkit-text-stroke-color: rgba(23, 13, 13, 0.1); }
 .level-step { position: absolute; left: 50%; top: clamp(9rem, 14vw, 12.5rem); z-index: 3; width: 3.6rem; height: 3.6rem; display: grid; place-items: center; transform: translate(-50%, -50%); border-radius: 50%; background: var(--red); color: #fff; border: 4px solid #b10f18; box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.6); }
@@ -387,7 +408,7 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .reel { position: relative; margin-top: 3.2rem; overflow: hidden; padding-block: 14px;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
 .reel--2 { margin-top: 0; }
-.reel-track { display: flex; gap: 1.2rem; width: max-content; animation: reel 70s linear infinite; }
+.reel-track { display: flex; gap: 1.2rem; padding-right: 1.2rem; width: max-content; animation: reel 70s linear infinite; }
 .reel-track--right { animation-direction: reverse; animation-duration: 82s; }
 @keyframes reel { to { transform: translateX(-50%); } }
 .ph { flex: none; width: clamp(230px, 26vw, 380px); aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; border: 5px solid #fff; background: #fff; box-shadow: 0 16px 34px -14px rgba(0, 0, 0, 0.6); transform: rotate(var(--r, 0deg)); transition: transform 0.4s var(--ease); }
@@ -411,12 +432,13 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 
 /* ============================ CONTACTO ============================ */
 .contact { padding-bottom: clamp(5rem, 9vw, 8rem); }
-.contact-title { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; text-align: center; font-size: clamp(5rem, 22vw, 20rem); line-height: 0.8; letter-spacing: -0.01em; margin: 0.4rem 0 clamp(2.5rem, 5vw, 4rem); }
+.contact-title { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; text-align: center; font-size: min(21vw, 18.5rem); line-height: 0.8; letter-spacing: -0.01em; margin: 0.4rem 0 clamp(2.5rem, 5vw, 4rem); }
 .contact-title span { color: var(--red); }
 .contact-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; max-width: 980px; margin-inline: auto; }
 .c-card { display: flex; align-items: center; gap: 1.2rem; padding: 1.6rem 1.8rem; border-radius: 22px; border: 2px solid var(--paper-ink); transition: transform 0.4s var(--ease), background 0.25s, color 0.25s; }
 .c-card--wa { background: var(--red); color: #fff; border-color: var(--red); }
 .c-card--wa:hover { background: var(--red-hot); }
+.c-card--wa .c-label { opacity: 1; } /* blanco al 75% sobre rojo daba 3.2:1 */
 .c-card--cap { background: var(--paper-ink); color: #fff; }
 .c-card--cap:hover { background: #000; }
 .c-card--mail { grid-column: 1 / -1; }
@@ -480,6 +502,21 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   font-family: var(--font-display); font-weight: 800; font-size: max(0.62rem, 2.3cqw); line-height: 1; letter-spacing: 0.08em; text-transform: uppercase; color: #fff;
   background: rgba(11, 7, 7, 0.72); border: 1px solid rgba(255, 59, 46, 0.6); box-shadow: 0 0 18px -4px rgba(255, 59, 46, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.12); }
 
+/* Posición de cada rótulo y orden (--n) de cada hilo/nodo. Va acá y no inline en el HTML: el CSP no permite style="". */
+.why-tag--0 { --n: 0; left: 49.4%; top: 9.2%; }
+.why-tag--1 { --n: 1; left: 19.5%; top: 20.5%; }
+.why-tag--2 { --n: 2; left: 79.2%; top: 19.5%; }
+.why-tag--3 { --n: 3; left: 22%; top: 85%; }
+.why-tag--4 { --n: 4; left: 77.6%; top: 85%; }
+.why-tag--5 { --n: 5; left: 52.8%; top: 92%; }
+.why-draw > :nth-child(1), .why-pulse > :nth-child(1), .why-nodes > :nth-child(1) { --n: 0; }
+.why-draw > :nth-child(2), .why-pulse > :nth-child(2), .why-nodes > :nth-child(2) { --n: 1; }
+.why-draw > :nth-child(3), .why-pulse > :nth-child(3), .why-nodes > :nth-child(3) { --n: 2; }
+.why-draw > :nth-child(4), .why-pulse > :nth-child(4), .why-nodes > :nth-child(4) { --n: 3; }
+.why-draw > :nth-child(5), .why-pulse > :nth-child(5), .why-nodes > :nth-child(5) { --n: 4; }
+.why-draw > :nth-child(6), .why-pulse > :nth-child(6), .why-nodes > :nth-child(6) { --n: 5; }
+.why-logo__ripple:nth-child(2) { --d: 1.6s; }
+
 /* Logo de la IA: placa con brillo, anillo giratorio y ondas, apoyado en la cara superior del chip (plano isométrico 2:1 del render). */
 .why-art { container-type: inline-size; }
 .why-logo { position: absolute; left: 50.2%; top: 49.4%; width: 25cqw; aspect-ratio: 1; display: grid; place-items: center; pointer-events: none; color: #fff;
@@ -499,11 +536,19 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .why-list { list-style: none; margin: clamp(1.6rem, 3vw, 2.4rem) 0 0; padding: 0; }
 .why-item { display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--line); }
 .why-item:last-child { border-bottom: 1px solid var(--line); }
+.why-item:nth-child(1) { --d: 0.05s; }
+.why-item:nth-child(2) { --d: 0.15s; }
+.why-item:nth-child(3) { --d: 0.25s; }
+.why-item:nth-child(4) { --d: 0.35s; }
 .why-item b { display: block; font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.5rem; line-height: 1; margin-bottom: 0.3rem; }
 .why-item div > span { display: block; font-size: 0.95rem; line-height: 1.4; color: var(--text-dim); }
 .why-ico { flex: none; display: grid; place-items: center; width: 50px; height: 50px; border-radius: 14px; background: var(--red); box-shadow: 0 10px 24px -10px rgba(225, 29, 38, 0.9); }
 .why-ico .ico { width: 1.55rem; height: 1.55rem; }
 .why-bars { flex: none; display: flex; align-items: flex-end; gap: 5px; width: 50px; height: 50px; padding: 7px; border-radius: 14px; background: rgba(255, 255, 255, 0.07); }
+.why-bars i:nth-child(1) { --h: 38%; --i: 0s; }
+.why-bars i:nth-child(2) { --h: 58%; --i: 0.25s; }
+.why-bars i:nth-child(3) { --h: 76%; --i: 0.5s; }
+.why-bars i:nth-child(4) { --h: 100%; --i: 0.75s; }
 .why-bars i { flex: 1; height: var(--h); border-radius: 2px; background: linear-gradient(180deg, var(--red-hot), var(--red-deep)); transform-origin: bottom; animation: grow 2.4s ease-in-out infinite alternate; animation-delay: var(--i); }
 @keyframes grow { from { transform: scaleY(0.5); } to { transform: scaleY(1); } }
 .why-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: clamp(1.6rem, 3vw, 2.4rem); }
@@ -570,6 +615,11 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 @media (scripting: enabled) {
   [data-reveal] { opacity: 0; transform: translateY(32px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); transition-delay: var(--d, 0s); }
   [data-reveal].in { opacity: 1; transform: none; }
+  /* Ya revelado (el JS lo marca al terminar la entrada): sin el retardo escalonado ni la transición lenta,
+     para que hover, imán y tilt respondan al instante. */
+  [data-reveal].revealed { transition-property: opacity, transform, border-color, background-color, color, box-shadow; transition-duration: 0.4s; transition-delay: 0s; }
+  /* Red de seguridad: si script.js no llega a ejecutarse (no agrega .js-ready), el contenido aparece a los 3 s en vez de quedar invisible. */
+  html:not(.js-ready) [data-reveal] { animation: reveal-failsafe 0.01s 3s forwards; }
   .hero-title .line > span { transform: translateY(110%); animation: rise 1s var(--ease) forwards; }
   .hero-title .line:nth-child(1) > span { animation-delay: 0.15s; }
   .hero-title .line:nth-child(2) > span { animation-delay: 0.28s; }
@@ -581,10 +631,12 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   .hero-copy > .hero-proof { animation-delay: 0.95s; }
   .hero-copy > .chip { animation-delay: 0.05s; }
 }
+@keyframes reveal-failsafe { to { opacity: 1; transform: none; } }
 @keyframes rise { to { transform: none; } }
 @keyframes fadeup { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
-.tilt { transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+/* Con data-reveal, el transform de la entrada (translateY → none) manda hasta que la tarjeta se revela; recién ahí entra el tilt. */
+.tilt:not([data-reveal]), .tilt.in { transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
 .tilt.is-tilting { transition: transform 0.12s linear, border-color 0.3s; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -648,4 +700,8 @@ h1, h2, h3, h4, p, figure { margin: 0; }
   .hero-cta .btn { width: 100%; }
   .sec-cta .btn { width: 100%; }
   .band-track span { font-size: 1.3rem; }
+  /* Tarjetas de contacto más compactas: el mail entra en una sola línea en vez de cortarse a mitad de palabra. */
+  .c-card { gap: 0.9rem; padding: 1.3rem 1.1rem; }
+  .c-card--mail .c-arrow { display: none; }
+  .c-card--mail .c-value { font-size: clamp(0.8rem, 4.1vw, 1.25rem); overflow-wrap: normal; }
 }

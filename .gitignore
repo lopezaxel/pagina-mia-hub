@@ -1,0 +1,8 @@
+# Salida del build (la genera Vercel con build.mjs)
+dist/
+
+# Configuración local de Claude Code (las skills de .claude/skills sí se versionan)
+.claude/settings.local.json
+
+# Material original pesado: el sitio usa las versiones optimizadas de public/assets/opt/
+public/assets/misc/

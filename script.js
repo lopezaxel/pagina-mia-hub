@@ -5,135 +5,186 @@
 (() => {
   'use strict';
 
+  // Le avisa al CSS que este script corrió: sin esto, la red de seguridad de [data-reveal] muestra todo a los 3 s.
+  document.documentElement.classList.add('js-ready');
+
+  // Cada función corre aislada: si una falla, el resto de la página sigue funcionando.
+  const safe = (name, fn) => {
+    try { fn(); } catch (err) { console.error(`[niki] ${name}:`, err); }
+  };
+
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  /* -------------------- NAV + PROGRESO -------------------- */
-  const nav = $('#nav');
-  const navToggle = $('#navToggle');
-  const navLinks = $('#navLinks');
-  const progress = $('.progress');
-
-  const setMenu = open => {
-    navLinks.classList.toggle('open', open);
-    nav.classList.toggle('menu-open', open);
-    navToggle.setAttribute('aria-expanded', String(open));
-    navToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-  };
-  navToggle.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
-  $$('a', navLinks).forEach(a => a.addEventListener('click', () => setMenu(false)));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
-
-  let ticking = false;
-  const onScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      const y = window.scrollY;
-      nav.classList.toggle('scrolled', y > 30);
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
-      ticking = false;
+  /* -------------------- REVEAL AL SCROLLEAR -------------------- */
+  // Va primero: es lo que vuelve visible el contenido.
+  safe('reveal', () => {
+    const revealEls = $$('[data-reveal]');
+    // Escalonado: los hermanos dentro de una misma grilla entran de a uno.
+    $$('.projects, .pay, .contact-cards, .stats').forEach(group => {
+      $$('[data-reveal], li', group).forEach((el, i) => el.style.setProperty('--d', `${i * 0.09}s`));
     });
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+    // Terminada la entrada se quita el retardo escalonado, para que hover, imán y tilt respondan al instante.
+    const settle = el => setTimeout(() => el.classList.add('revealed'), 1700);
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      revealEls.forEach(el => el.classList.add('in', 'revealed'));
+    } else {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('in');
+          settle(e.target);
+          io.unobserve(e.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      revealEls.forEach(el => io.observe(el));
+    }
 
-  /* -------------------- LINK ACTIVO -------------------- */
-  const sections = $$('main section[id]').filter(s => $(`a[href="#${s.id}"]`, navLinks));
-  if (sections.length && 'IntersectionObserver' in window) {
-    const spy = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        $$('a', navLinks).forEach(a => a.removeAttribute('aria-current'));
-        const link = $(`a[href="#${e.target.id}"]`, navLinks);
-        if (link) link.setAttribute('aria-current', 'true');
+    /* Escenas con secuencia propia (sin data-reveal: un transform en el contenedor rompe el mix-blend). */
+    const playEls = $$('[data-play]');
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      playEls.forEach(el => el.classList.add('in'));
+    } else {
+      const po = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          // Entra (>= 25 % visible): arranca la secuencia. Sale por completo: se rearma para la próxima vez.
+          if (e.intersectionRatio >= 0.25) e.target.classList.add('in');
+          else if (!e.isIntersecting) e.target.classList.remove('in');
+        });
+      }, { threshold: [0, 0.25] });
+      playEls.forEach(el => po.observe(el));
+    }
+  });
+
+  /* -------------------- NAV + PROGRESO -------------------- */
+  safe('nav', () => {
+    const nav = $('#nav');
+    const navToggle = $('#navToggle');
+    const navLinks = $('#navLinks');
+    const progress = $('.progress');
+
+    const setMenu = open => {
+      navLinks.classList.toggle('open', open);
+      nav.classList.toggle('menu-open', open);
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    };
+    navToggle.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+    $$('a', navLinks).forEach(a => a.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        nav.classList.toggle('scrolled', y > 30);
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
+        ticking = false;
       });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    sections.forEach(s => spy.observe(s));
-  }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    onScroll();
+
+    /* Link activo */
+    const sections = $$('main section[id]').filter(s => $(`a[href="#${s.id}"]`, navLinks));
+    if (sections.length && 'IntersectionObserver' in window) {
+      const spy = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          $$('a', navLinks).forEach(a => a.removeAttribute('aria-current'));
+          const link = $(`a[href="#${e.target.id}"]`, navLinks);
+          if (link) link.setAttribute('aria-current', 'true');
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      sections.forEach(s => spy.observe(s));
+    }
+  });
 
   /* -------------------- AÑO -------------------- */
-  const yearEl = $('#year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  /* -------------------- REVEAL AL SCROLLEAR -------------------- */
-  const revealEls = $$('[data-reveal]');
-  // Escalonado: los hermanos dentro de una misma grilla entran de a uno.
-  $$('.projects, .pay, .contact-cards, .stats').forEach(group => {
-    $$('[data-reveal], li', group).forEach((el, i) => el.style.setProperty('--d', `${i * 0.09}s`));
+  safe('año', () => {
+    const yearEl = $('#year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
   });
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    revealEls.forEach(el => el.classList.add('in'));
-  } else {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-    revealEls.forEach(el => io.observe(el));
-  }
-
-  /* Escenas con secuencia propia (sin data-reveal: un transform en el contenedor rompe el mix-blend). */
-  const playEls = $$('[data-play]');
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    playEls.forEach(el => el.classList.add('in'));
-  } else {
-    const po = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        // Entra (>= 25 % visible): arranca la secuencia. Sale por completo: se rearma para la próxima vez.
-        if (e.intersectionRatio >= 0.25) e.target.classList.add('in');
-        else if (!e.isIntersecting) e.target.classList.remove('in');
-      });
-    }, { threshold: [0, 0.25] });
-    playEls.forEach(el => po.observe(el));
-  }
 
   /* -------------------- CONTADORES -------------------- */
-  const counters = $$('[data-count]');
-  const runCounter = el => {
-    const end = Number(el.dataset.count);
-    const prefix = el.dataset.prefix || '';
-    const suffix = el.dataset.suffix || '';
-    if (reduceMotion) { el.textContent = `${prefix}${end}${suffix}`; return; }
-    const t0 = performance.now();
-    const dur = 1400;
-    const step = now => {
-      const k = Math.min((now - t0) / dur, 1);
-      const eased = 1 - Math.pow(1 - k, 4);
-      el.textContent = `${prefix}${Math.round(end * eased)}${suffix}`;
-      if (k < 1) requestAnimationFrame(step);
+  safe('contadores', () => {
+    const counters = $$('[data-count]');
+    const runCounter = el => {
+      const end = Number(el.dataset.count);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      if (reduceMotion) { el.textContent = `${prefix}${end}${suffix}`; return; }
+      const t0 = performance.now();
+      const dur = 1400;
+      const step = now => {
+        const k = Math.min((now - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - k, 4);
+        el.textContent = `${prefix}${Math.round(end * eased)}${suffix}`;
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
     };
-    requestAnimationFrame(step);
-  };
-  if ('IntersectionObserver' in window) {
-    const co = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        runCounter(e.target);
-        co.unobserve(e.target);
-      });
-    }, { threshold: 0.6 });
-    counters.forEach(el => co.observe(el));
-  }
+    if ('IntersectionObserver' in window) {
+      const co = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          runCounter(e.target);
+          co.unobserve(e.target);
+        });
+      }, { threshold: 0.6 });
+      counters.forEach(el => co.observe(el));
+    }
+  });
 
   /* -------------------- CARRUSELES INFINITOS -------------------- */
-  // Se duplica el contenido para que la animación (-50%) cierre el bucle sin salto.
-  $$('.reel-track, .band-track').forEach(track => {
-    Array.from(track.children).forEach(node => {
+  // La animación corre de 0 a -50 %, así que la pista es: [juegos] + [los mismos juegos clonados].
+  // Se repite el juego tantas veces como haga falta para que cada mitad cubra la pantalla; si no, en monitores
+  // anchos (2560 px o más) queda un hueco vacío a la derecha. La duración se escala para mantener la velocidad.
+  safe('carruseles', () => {
+    const tracks = $$('.reel-track, .band-track');
+    const base = new Map(tracks.map(t => [t, {
+      nodes: Array.from(t.children),
+      dur: parseFloat(getComputedStyle(t).animationDuration) || 60
+    }]));
+    const asClone = node => {
       const clone = node.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
       $$('img', clone).forEach(img => { img.alt = ''; });
-      track.appendChild(clone);
+      return clone;
+    };
+    let builtFor = 0;
+    const build = () => {
+      builtFor = window.innerWidth;
+      tracks.forEach(track => {
+        const { nodes, dur } = base.get(track);
+        track.replaceChildren(...nodes);
+        const pitch = track.scrollWidth; // un juego, con el hueco final incluido (ver padding-right en el CSS)
+        const copies = reduceMotion || !pitch ? 1 : Math.max(1, Math.ceil(window.innerWidth / pitch));
+        const half = [...nodes];
+        for (let c = 1; c < copies; c++) nodes.forEach(n => half.push(asClone(n)));
+        track.replaceChildren(...half, ...half.map(asClone));
+        track.style.animationDuration = `${(dur * copies).toFixed(1)}s`;
+      });
+    };
+    build();
+    // Las medidas de la banda dependen de la tipografía: se recalcula cuando termina de cargar.
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+    let timer;
+    window.addEventListener('resize', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => { if (window.innerWidth > builtFor) build(); }, 200);
     });
   });
 
   /* -------------------- TILT + LUZ QUE SIGUE AL PUNTERO -------------------- */
-  if (finePointer && !reduceMotion) {
+  safe('tilt', () => {
+    if (!finePointer || reduceMotion) return;
     $$('.tilt').forEach(card => {
       card.addEventListener('pointermove', e => {
         const r = card.getBoundingClientRect();
@@ -162,43 +213,49 @@
       });
       el.addEventListener('pointerleave', () => { el.style.transform = ''; });
     });
-  }
+  });
 
   /* -------------------- MODAL DE VIDEO (Loom) -------------------- */
-  const modal = $('#videoModal');
-  const frame = $('#vmFrame');
-  const title = $('#vmTitle');
-  const LOOM_ID = /^[a-f0-9]{32}$/;
-  let lastTrigger = null;
+  safe('modal', () => {
+    const modal = $('#videoModal');
+    const frame = $('#vmFrame');
+    const title = $('#vmTitle');
+    const LOOM_ID = /^[a-f0-9]{32}$/;
+    let lastTrigger = null;
 
-  const closeModal = () => { if (modal.open) modal.close(); };
-  $$('[data-loom]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.dataset.loom;
-      if (!LOOM_ID.test(id)) return;
-      lastTrigger = btn;
-      title.textContent = btn.dataset.title || 'Demo';
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://www.loom.com/embed/${id}?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true&autoplay=1`;
-      iframe.title = `Demo: ${btn.dataset.title || 'proyecto'}`;
-      iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-      iframe.allowFullscreen = true;
-      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-      frame.replaceChildren(iframe);
-      modal.showModal();
+    const closeModal = () => { if (modal.open) modal.close(); };
+    $$('[data-loom]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.loom;
+        if (!LOOM_ID.test(id)) return;
+        lastTrigger = btn;
+        title.textContent = btn.dataset.title || 'Demo';
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.loom.com/embed/${id}?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true&autoplay=1`;
+        iframe.title = `Demo: ${btn.dataset.title || 'proyecto'}`;
+        iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        frame.replaceChildren(iframe);
+        modal.showModal();
+      });
     });
-  });
-  $('#vmClose').addEventListener('click', closeModal);
-  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-  modal.addEventListener('close', () => {
-    frame.replaceChildren(); // corta el video al cerrar
-    if (lastTrigger) lastTrigger.focus();
+    $('#vmClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    modal.addEventListener('close', () => {
+      frame.replaceChildren(); // corta el video al cerrar
+      if (lastTrigger) lastTrigger.focus();
+    });
   });
 
   /* -------------------- RETRATO DEL HERO: profundidad con el mouse + chispas -------------------- */
-  const art = $('#heroArt');
-  const sparks = $('#artSparks');
-  if (art && !reduceMotion) {
+  safe('hero', () => {
+    const art = $('#heroArt');
+    const sparks = $('#artSparks');
+    if (!art || reduceMotion) {
+      if (sparks) sparks.remove(); // movimiento reducido: solo la imagen quieta
+      return;
+    }
     const hero = $('#hero');
     const state = { x: 0, y: 0, tx: 0, ty: 0, visible: true };
 
@@ -233,10 +290,13 @@
       };
     };
 
+    // "running" evita que se acumulen loops: con la pestaña oculta el rAF pendiente sigue vivo,
+    // y arrancar otro al volver duplicaba el ciclo.
+    let running = false;
     let last = 0;
-    const frame = now => {
-      if (!state.visible) return;
-      requestAnimationFrame(frame);
+    const tick = now => {
+      if (!state.visible) { running = false; return; }
+      requestAnimationFrame(tick);
       if (now - last < 16) return; // tope ~60 fps en pantallas de alta frecuencia
       last = now;
 
@@ -259,23 +319,24 @@
         ctx.fill();
       }
     };
+    const start = () => {
+      if (running || !state.visible) return;
+      running = true;
+      requestAnimationFrame(tick);
+    };
 
     resize();
     new ResizeObserver(resize).observe(art);
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(([e]) => {
-        const was = state.visible;
         state.visible = e.isIntersecting && !document.hidden;
-        if (state.visible && !was) requestAnimationFrame(frame);
+        start();
       }, { threshold: 0 }).observe(hero);
     }
     document.addEventListener('visibilitychange', () => {
-      const was = state.visible;
       state.visible = !document.hidden;
-      if (state.visible && !was) requestAnimationFrame(frame);
+      start();
     });
-    requestAnimationFrame(frame);
-  } else if (sparks) {
-    sparks.remove(); // movimiento reducido: solo la imagen quieta
-  }
+    start();
+  });
 })();
