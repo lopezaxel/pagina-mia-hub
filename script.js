@@ -223,6 +223,37 @@
     const LOOM_ID = /^[a-f0-9]{32}$/;
     let lastTrigger = null;
 
+    const RATIO = /^\d{3,4}\/\d{3,4}$/;
+    let timers = [];
+    let onLoomMessage = null;
+    const stopListening = () => {
+      if (onLoomMessage) window.removeEventListener('message', onLoomMessage);
+      onLoomMessage = null;
+    };
+
+    // Loom tarda 10 s o más en arrancar: mientras tanto se muestra la miniatura con un spinner,
+    // y si pasa de 12 s aparece un link para verlo directo en Loom.
+    const buildLoading = (id, btn) => {
+      const box = document.createElement('div');
+      box.className = 'vm-loading';
+      box.setAttribute('role', 'status');
+      const thumb = $('img', btn);
+      if (thumb && (thumb.currentSrc || thumb.src)) box.style.setProperty('--poster', `url("${thumb.currentSrc || thumb.src}")`);
+      const spin = document.createElement('i');
+      spin.className = 'vm-spin';
+      spin.setAttribute('aria-hidden', 'true');
+      const msg = document.createElement('p');
+      msg.textContent = 'Cargando el video…';
+      const link = document.createElement('a');
+      link.href = `https://www.loom.com/share/${id}`;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = 'Está tardando: verlo directo en Loom';
+      link.hidden = true;
+      box.append(spin, msg, link);
+      return { box, link };
+    };
+
     const closeModal = () => { if (modal.open) modal.close(); };
     $$('[data-loom]').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -230,19 +261,42 @@
         if (!LOOM_ID.test(id)) return;
         lastTrigger = btn;
         title.textContent = btn.dataset.title || 'Demo';
+        const [rw, rh] = (RATIO.test(btn.dataset.ratio || '') ? btn.dataset.ratio : '16/9').split('/').map(Number);
+        frame.style.setProperty('--ratio', (rw / rh).toFixed(4));
+
         const iframe = document.createElement('iframe');
         iframe.src = `https://www.loom.com/embed/${id}?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true&autoplay=1`;
         iframe.title = `Demo: ${btn.dataset.title || 'proyecto'}`;
         iframe.allow = 'autoplay; fullscreen; picture-in-picture';
         iframe.allowFullscreen = true;
         iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-        frame.replaceChildren(iframe);
+
+        const { box, link } = buildLoading(id, btn);
+        const reveal = () => { iframe.classList.add('ready'); box.classList.add('done'); };
+        // Tras "load", Loom puede tardar varios segundos en pintar el reproductor (gris). Avisa con un evento "ready"
+        // de player.js por postMessage: se espera esa señal, validando que venga de Loom y de este iframe.
+        stopListening();
+        onLoomMessage = e => {
+          if (e.origin !== 'https://www.loom.com' || e.source !== iframe.contentWindow) return;
+          let d = e.data;
+          if (typeof d === 'string') { try { d = JSON.parse(d); } catch { return; } }
+          if (d && d.context === 'player.js' && d.event === 'ready') timers.push(setTimeout(reveal, 300));
+        };
+        window.addEventListener('message', onLoomMessage);
+        // Plan B por si el aviso nunca llega: 6 s después de "load" se destapa igual.
+        iframe.addEventListener('load', () => timers.push(setTimeout(reveal, 6000)));
+        timers.forEach(clearTimeout);
+        // Mientras tanto el overlay sigue y a los 12 s aparece el link a Loom.
+        timers = [setTimeout(() => { link.hidden = false; }, 12000)];
+        frame.replaceChildren(box, iframe);
         modal.showModal();
       });
     });
     $('#vmClose').addEventListener('click', closeModal);
     modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
     modal.addEventListener('close', () => {
+      timers.forEach(clearTimeout);
+      stopListening();
       frame.replaceChildren(); // corta el video al cerrar
       if (lastTrigger) lastTrigger.focus();
     });
